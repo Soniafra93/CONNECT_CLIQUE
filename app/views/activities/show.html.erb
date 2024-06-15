@@ -1,0 +1,32 @@
+<p>
+  <strong>Name:</strong>
+  <%= @activity.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @activity.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @activity.address %>
+</p>
+
+<p>
+  <strong>Date 1:</strong>
+  <%= @activity.date_1 %>
+</p>
+
+<p>
+  <strong>Date 2:</strong>
+  <%= @activity.date_2 %>
+</p>
+
+<p>
+  <strong>Date 3:</strong>
+  <%= @activity.date_3 %>
+</p>
+
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<%= link_to 'Back', activities_path %>
