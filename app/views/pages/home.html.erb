@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="container my-5">
+<%= month_calendar(events: @meetings, end_attribute: :end_time) do |date, meetings| %>
+  <%= date %>
+
+  <% meetings.each do |meeting| %>
+    <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
+      <p><%= meeting.name %></p>
+    </div>
+  <% end %>
+  </div>
+<% end %>
