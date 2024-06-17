@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :activities
   resources :friends, only: [:index, :create, :destroy]
+  resources :activities do
+    resources :attendances
+  end
   root 'pages#home'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
