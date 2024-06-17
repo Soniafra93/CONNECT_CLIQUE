@@ -1,0 +1,9 @@
+<div class="container">
+  <p>Vote the date which is more convenient to you for the <%= @activity.name.capitalize %>!</p>
+  <%= simple_form_for [@activity, @vote] do |f| %>
+    <div class="my-3 form-check">
+      <%= f.input :selected_date, as: :radio_buttons, collection: [@activity.date_1, @activity.date_2, @activity.date_3], item_wrapper_class: 'form-check', input_html: { class: 'form-check-input' }, label_html: { class: 'form-check-label' } %>
+    </div>
+    <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+</div>
