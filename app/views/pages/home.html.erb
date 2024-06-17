@@ -1,12 +1,9 @@
-<%= render 'partials/navbar' %>
 <div class="container my-5">
-<%= month_calendar(events: @meetings, end_attribute: :end_time) do |date, meetings| %>
-  <%= date %>
-
-  <% meetings.each do |meeting| %>
-    <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
-      <p><%= meeting.name %></p>
-    </div>
+  <%= month_calendar(events: @meetings, start_attribute: :start_time, end_attribute: :end_time) do |date, meetings| %>
+    <%= date %>
+    <% meetings.each do |meeting| %>
+      <!-- Customize how meetings are displayed here -->
+      <p><%= meeting.name %> - <%= meeting.start_time.strftime("%H:%M") %> to <%= meeting.end_time.strftime("%H:%M") %></p>
+    <% end %>
   <% end %>
-  </div>
-<% end %>
+</div>
