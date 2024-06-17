@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
   resources :activities
+  resources :friends, only: [:index, :create, :destroy]
+  root to: "pages#home"
   # root 'activities#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
