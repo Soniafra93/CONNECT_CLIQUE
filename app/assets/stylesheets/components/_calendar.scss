@@ -19,3 +19,18 @@
   background: #1bcb7f;
   color: white;
 }
+
+.custom-calendar-title {
+  background-color: #f7f7f7 !important; /* Changed background color */
+  color: black; /* Change text color if needed */
+  border: none; /* Remove border */
+}
+
+.custom-calendar-title:focus {
+  outline: none; /* Remove blue outline */
+  box-shadow: none; /* Remove any box shadow */
+}
+
+.calendar-heading {
+  text-align: left; /* Ensure the heading is left-aligned */
+}
