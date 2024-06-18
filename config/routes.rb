@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     resources :votes, only: [:new, :create]
   end
   resources :friends, only: [:index, :create, :destroy]
+  resources :activities do
+    resources :attendances
+  end
   root 'pages#home'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
