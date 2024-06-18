@@ -1,35 +1,35 @@
-<%= form_with(model: activity, local: true) do |form| %>
+<%= form_with(model: activity, local: true, class: 'activity-form') do |form| %>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.label :address, class: 'form-label' %>
+    <%= form.text_field :address, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :date_1 %>
-    <%= form.datetime_select :date_1 %>
+    <%= form.label :date_1, class: 'form-label' %>
+    <%= form.datetime_select :date_1, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :date_2 %>
-    <%= form.datetime_select :date_2 %>
+    <%= form.label :date_2, class: 'form-label' %>
+    <%= form.datetime_select :date_2, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :date_3 %>
-    <%= form.datetime_select :date_3 %>
+    <%= form.label :date_3, class: 'form-label' %>
+    <%= form.datetime_select :date_3, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Create Activity', class: 'btn btn-light' %>
   </div>
 <% end %>
