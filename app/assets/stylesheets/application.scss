@@ -10,6 +10,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import 'activities/activity_form';
 
 // Gems
 @import "simple_calendar";
+
+// Frontend
+@import 'activities/new';
