@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="simple-calendar">
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="calendar-heading my-2">
-          <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: 'btn btn-outline-primary' %>
-          <span class="calendar-title btn btn-primary"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-          <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: 'btn btn-outline-primary' %>
-        </div>
-        <%= link_to 'Create activity', new_activity_path, class: 'btn btn-outline-warning' %>
-      </div>
+  <div class="simple-calendar">
+    <div class="calendar-heading my-2 text-left"> <!-- Changed text-center to text-left -->
+      <span class="calendar-title btn btn-primary custom-calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span> <!-- Added custom-calendar-title class -->
+    </div>
+
+    <div class="calendar-navigation d-flex justify-content-between align-items-center">
+      <%= link_to calendar.url_for_previous_view, class: 'chevron-left' do %>
+        <i class="fas fa-chevron-left chevron-custom"></i>
+      <% end %>
 
       <table class="table table-striped">
         <thead>
@@ -30,5 +30,10 @@
           <% end %>
         </tbody>
       </table>
+
+      <%= link_to calendar.url_for_next_view, class: 'chevron-right' do %>
+        <i class="fas fa-chevron-right chevron-custom"></i>
+      <% end %>
     </div>
+  </div>
 </div>
