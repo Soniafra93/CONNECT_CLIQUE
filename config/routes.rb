@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :activities
+  resources :activities do
+    resources :votes, only: [:new, :create]
+  end
   resources :friends, only: [:index, :create, :destroy]
   root 'pages#home'
 
