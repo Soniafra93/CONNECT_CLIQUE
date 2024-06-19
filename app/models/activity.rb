@@ -10,6 +10,9 @@ class Activity < ApplicationRecord
   validates :date_2, presence: true
   validates :date_3, presence: true
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   def most_voted_date
     dates = [date_1, date_2, date_3]
     tally = dates.map do |date|
@@ -18,5 +21,4 @@ class Activity < ApplicationRecord
     most_voted = tally.max_by { |date, count| count }
     most_voted ? most_voted[0] : nil
   end
-
 end
