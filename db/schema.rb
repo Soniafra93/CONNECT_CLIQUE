@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_141622) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
-    t.float "latitute"
+    t.float "latitude"
     t.float "longitude"
     t.text "description"
     t.date "date_1"
