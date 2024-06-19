@@ -1,8 +1,8 @@
 <div class="footer">
   <div class="footer-links d-flex justify-content-between">
-    <%= image_tag "home.png", alt: "Home" %>
+    <%= link_to image_tag("home.png", alt: "Home"), root_path %>
     <%= link_to image_tag("add.png", alt: "Add"), new_activity_path %>
-    <%= image_tag "search.png", alt: "Search" %>
-    <%= image_tag "bell.png", alt: "Bell" %>
+    <%= link_to image_tag("search.png", alt: "Search"), '#' %>
+    <%= link_to image_tag("bell.png", alt: "Bell"), '#' %>
   </div>
 </div>
