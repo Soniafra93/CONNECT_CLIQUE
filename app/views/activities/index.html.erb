@@ -27,8 +27,16 @@
           <td><%= activity.date_2 %></td>
           <td><%= activity.date_3 %></td>
           <td><%= link_to 'Show', activity %></td>
-          <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-          <td><%= link_to 'Destroy', activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+          <td>
+            <% if policy(activity).edit? %>
+              <%= link_to 'Edit', edit_activity_path(activity) %>
+            <% end  %>
+          </td>
+          <td>
+            <% if policy(activity).destroy? %>
+              <%= link_to 'Destroy', activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            <% end  %>
+          </td>
         </tr>
       <% end %>
     </tbody>
