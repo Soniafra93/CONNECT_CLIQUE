@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-md py-3" style="background-color: transparent;" data-bs-theme="light">
+<nav class="navbar navbar-expand-md py-0" style="background-color: #f7f7f7;">
   <div class="container">
     <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
-      <%= image_tag "logo.png", alt: "Logo", width: "30", height: "30", class: "d-inline-block align-text-top me-2" %>
-      <span style="color: black;">connect clique</span>
+      <%= image_tag "logo_big.png", alt: "Logo", width: "200", height: "100", class: "d-inline-block align-text-top me-2" %>
     <% end %>
     <div class="d-flex justify-content-end">
       <div class="dropdown">
@@ -10,9 +9,9 @@
           <%= image_tag "default-avatar.avif", alt: "Avatar", width: "40", height: "40", class: "rounded-circle" %>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" style="background-color: rgba(255, 255, 255, 0.8);">
-          <li><%= link_to "First Item", "#", class: "dropdown-item", style: "color: black;" %></li>
-          <li><%= link_to "Second Item", "#", class: "dropdown-item", style: "color: black;" %></li>
-          <li><%= link_to "Third Item", "#", class: "dropdown-item", style: "color: black;" %></li>
+          <li><%= link_to "Log In", "#", class: "dropdown-item", style: "color: black;" %></li>
+          <li><%= link_to "Sign Up", "#", class: "dropdown-item", style: "color: black;" %></li>
+          <li><%= link_to "Log Out", "#", class: "dropdown-item", style: "color: black;" %></li>
         </ul>
       </div>
     </div>
