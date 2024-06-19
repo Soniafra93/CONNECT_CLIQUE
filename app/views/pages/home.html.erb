@@ -1,5 +1,3 @@
-<%= render 'partials/navbar' %>
-
 <%= month_calendar(events: @activities, start_attribute: :start_time, end_attribute: :end_time) do |date, activities| %>
   <%= date %>
   <% activities.each do |activity| %>
@@ -7,5 +5,3 @@
     <p><%= activity.name %> - <%= activity.start_time.strftime("%H:%M") %> to <%= activity.end_time.strftime("%H:%M") %></p>
   <% end %>
 <% end %>
-
-<%= render 'partials/footer' %>

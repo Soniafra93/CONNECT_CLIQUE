@@ -1,0 +1,79 @@
+.activities-container {
+  padding: 20px;
+}
+
+.activities-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.activities-table th,
+.activities-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.activities-table th {
+  background-color: #f2f2f2;
+}
+
+@media screen and (max-width: 768px) {
+  .activities-table,
+  .activities-table thead,
+  .activities-table tbody,
+  .activities-table th,
+  .activities-table td,
+  .activities-table tr {
+    display: block;
+  }
+  .activities-table th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .activities-table tr {
+    margin: 0 0 1rem 0;
+  }
+  .activities-table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+  .activities-table td:before {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    transform: translateY(-50%);
+  }
+  .activities-table td:nth-of-type(1):before {
+    content: "Name";
+  }
+  .activities-table td:nth-of-type(2):before {
+    content: "Description";
+  }
+  .activities-table td:nth-of-type(3):before {
+    content: "Address";
+  }
+  .activities-table td:nth-of-type(4):before {
+    content: "Date 1";
+  }
+  .activities-table td:nth-of-type(5):before {
+    content: "Date 2";
+  }
+  .activities-table td:nth-of-type(6):before {
+    content: "Date 3";
+  }
+  .activities-table td:nth-of-type(7):before {
+    content: "";
+  }
+  .activities-table td:nth-of-type(8):before {
+    content: "";
+  }
+  .activities-table td:nth-of-type(9):before {
+    content: "";
+  }
+}
