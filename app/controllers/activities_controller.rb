@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy, :close_voting]
 
   def index
-    @activities = policy_scope(Activity).where(voting_closed: true)
+    @activities = policy_scope(Activity)
   end
 
   def show
