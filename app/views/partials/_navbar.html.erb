@@ -11,7 +11,7 @@
         <ul class="dropdown-menu dropdown-menu-end" style="background-color: rgba(255, 255, 255, 0.8);">
           <li><%= link_to "Log In", "#", class: "dropdown-item", style: "color: black;" %></li>
           <li><%= link_to "Sign Up", "#", class: "dropdown-item", style: "color: black;" %></li>
-          <li><%= link_to "Log Out", "#", class: "dropdown-item", style: "color: black;" %></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item", style: "color: black;" %></li>
         </ul>
       </div>
     </div>
