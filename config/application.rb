@@ -15,6 +15,15 @@ module ConnectClique
       generate.test_framework :test_unit, fixture: false
     end
 
+    module YourApp
+      class Application < Rails::Application
+        # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+        config.time_zone = 'Central Time (US & Canada)'
+        # The default timezone is UTC
+        config.active_record.default_timezone = :local
+      end
+    end
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 

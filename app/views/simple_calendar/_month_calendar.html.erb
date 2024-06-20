@@ -1,7 +1,7 @@
 <div class="container">
   <div class="simple-calendar">
-    <div class="calendar-heading my-2 text-left"> <!-- Changed text-center to text-left -->
-      <span class="calendar-title btn btn-primary custom-calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span> <!-- Added custom-calendar-title class -->
+    <div class="calendar-heading my-2 text-left">
+      <span class="calendar-title btn btn-primary custom-calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
     </div>
 
     <div class="calendar-navigation d-flex justify-content-between align-items-center">
@@ -22,8 +22,30 @@
           <% date_range.each_slice(7) do |dates| %>
             <tr>
               <% dates.each do |date| %>
-                <%= content_tag :td, class: calendar.td_classes_for(date) do %>
-                  <% passed_block.call date.day, sorted_events.fetch(date, []) %>
+                <% td_classes = calendar.td_classes_for(date) %>
+                <% if (@sorted_events ||= {})[date] %>
+                  <% td_classes << ' bg-success' %>
+                <% end %>
+                <%= content_tag :td, class: td_classes do %>
+                  <div class="day">
+                    <strong><%= date.day %></strong>
+                    <% activities = @sorted_events[date] || [] %>
+                    <% activities.each do |activity| %>
+                      <div class="activity">
+                        <p>
+                          <%= link_to activity.name, activity_path(activity), class: 'activity-link' %>
+                          <br>
+                          <small class="text-muted">
+                            <% if activity.start_time.present? && activity.end_time.present? %>
+                              <%= activity.start_time.strftime("%H:%M") %> - <%= activity.end_time.strftime("%H:%M") %>
+                            <% else %>
+                              Time not set
+                            <% end %>
+                          </small>
+                        </p>
+                      </div>
+                    <% end %>
+                  </div>
                 <% end %>
               <% end %>
             </tr>

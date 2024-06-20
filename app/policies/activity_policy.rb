@@ -28,6 +28,10 @@ class ActivityPolicy < ApplicationPolicy
     return record.user == user
   end
 
+  def close_voting?
+    record.user == user && !record.voting_closed?
+  end
+
 
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!

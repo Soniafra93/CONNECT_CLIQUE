@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :activities do
     resources :votes, only: [:new, :create]
+    post 'close_voting', on: :member
   end
   resources :friends, only: [:index, :create, :destroy]
   resources :activities do

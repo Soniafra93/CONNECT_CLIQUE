@@ -46,6 +46,14 @@ class ApplicationPolicy
       raise NoMethodError, "You must define #resolve in #{self.class}"
     end
 
+    def close_voting?
+      record.user == user && record.voting_closed_at.nil?
+    end
+
+    def policy_scope
+      scope.all
+    end
+
     private
 
     attr_reader :user, :scope
