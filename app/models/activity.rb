@@ -5,6 +5,9 @@ class Activity < ApplicationRecord
 
   validates :name, :description, :address, :date_1, :date_2, :date_3, presence: true
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   def determine_winning_date
     dates = [date_1, date_2, date_3].uniq.compact  # Ensure dates are distinct and remove nil values
     vote_counts = dates.map { |date| votes.where(selected_date: date).count }
@@ -24,5 +27,13 @@ class Activity < ApplicationRecord
       # For now, just update with the first winning date found
       self.update(winning_date: winning_dates.first)
     end
+  end
+
+  def most_voted_date
+    dates = [date_1, date_2, date_3]
+    tally = dates.map do |date|
+      [date, votes.where(selected_date: date).count]
+    end
+    tally.max_by { |_, count| count }&.first
   end
 end

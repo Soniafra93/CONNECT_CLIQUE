@@ -7,6 +7,12 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @markers = [{
+      lat: @activity.latitude,
+      lng: @activity.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { activity: @activity })
+    }]
+
     authorize(@activity)
   end
 

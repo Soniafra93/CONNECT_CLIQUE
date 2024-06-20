@@ -16,7 +16,9 @@
     <% else %>
       <%= @activity.most_voted_date %>
     <% end %>
-    <!-- Display time details -->
+  </p>
+
+  <!-- Display time details -->
   <% if @activity.start_time.present? && @activity.end_time.present? %>
     <p>
       <strong>Time of Activity:</strong>
@@ -25,7 +27,6 @@
   <% else %>
     <p><strong>Time:</strong> Time not set</p>
   <% end %>
-  </p>
 
   <!-- Edit and Vote links -->
   <% if policy(@activity).edit? %>
@@ -39,5 +40,9 @@
     <%= button_to 'Close Voting', close_voting_activity_path(@activity), method: :post, class: 'btn1' %>
   <% end %>
 
-
+  <!-- Map display -->
+  <div id="map" style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
