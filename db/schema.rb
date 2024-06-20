@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_17_141622) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_20_085949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,14 +29,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_141622) do
     t.string "address"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.boolean "voting_closed"
+    t.date "winning_date"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
   create_table "attendances", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "activity_id", null: false
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_attendances_on_activity_id"

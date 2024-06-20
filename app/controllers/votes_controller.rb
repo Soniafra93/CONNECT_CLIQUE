@@ -1,5 +1,7 @@
 class VotesController < ApplicationController
   before_action :set_activity
+  before_action :authorize_vote, only: [:new, :create]
+
   def new
     @vote = Vote.new
   end
@@ -11,7 +13,7 @@ class VotesController < ApplicationController
     if @vote.save
       redirect_to activity_path(@activity), notice: 'Your vote was successfully submitted.'
     else
-      render:new, status: 422
+      render :new, status: 422
     end
   end
 
@@ -23,5 +25,9 @@ class VotesController < ApplicationController
 
   def vote_params
     params.require(:vote).permit(:selected_date)
+  end
+
+  def authorize_vote
+    authorize Vote
   end
 end
