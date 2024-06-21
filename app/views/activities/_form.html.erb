@@ -1,35 +1,39 @@
-<%= form_with(model: activity, local: true, class: 'activity-form') do |form| %>
+<%= simple_form_for(activity, html: { class: 'activity-form' }) do |form| %>
   <div class="field">
-    <%= form.label :name, class: 'form-label' %>
-    <%= form.text_field :name, class: 'form-control' %>
+    <%= form.input :name, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
   </div>
 
   <div class="field">
-    <%= form.label :description, class: 'form-label' %>
-    <%= form.text_area :description, class: 'form-control' %>
+    <%= form.input :description, as: :text, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
   </div>
 
   <div class="field">
-    <%= form.label :address, class: 'form-label' %>
-    <%= form.text_field :address, class: 'form-control' %>
+    <%= form.input :address,
+      input_html: {
+        data: { address_autocomplete_target: "address" },
+        class: "d-none"
+      },
+      wrapper_html: {
+        data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] }
+      },
+      label_html: { class: 'form-label' }
+    %>
   </div>
 
   <div class="field">
-    <%= form.label :date_1, class: 'form-label' %>
-    <%= form.text_field :date_1, as: :string, data: { controller:"datepicker" } , class: 'form-control' %>
+    <%= form.input :date_1, as: :string, label_html: { class: 'form-label' }, input_html: { class: 'form-control', data: { controller: "datepicker" } } %>
   </div>
 
   <div class="field">
-    <%= form.label :date_2, class: 'form-label' %>
-    <%= form.text_field :date_2, as: :string, data: { controller:"datepicker" }, class: 'form-control' %>
+    <%= form.input :date_2, as: :string, label_html: { class: 'form-label' }, input_html: { class: 'form-control', data: { controller: "datepicker" } } %>
   </div>
 
   <div class="field">
-    <%= form.label :date_3, class: 'form-label' %>
-    <%= form.text_field :date_3, as: :string, data: { controller:"datepicker" }, class: 'form-control' %>
+    <%= form.input :date_3, as: :string, label_html: { class: 'form-label' }, input_html: { class: 'form-control', data: { controller: "datepicker" } } %>
   </div>
 
   <div class="actions">
     <%= form.submit 'Create Activity', class: 'btn1' %>
   </div>
 <% end %>
+
