@@ -2,47 +2,18 @@
   <h1>Activities</h1>
 
   <!-- Search form -->
-  <div class="search-form">
+  <div class="search-form mb-4">
     <%= form_with url: activities_path, method: :get, local: true do |form| %>
       <%= form.text_field :query, placeholder: "Search activities...", class: "form-control" %>
-      <%= form.submit "Search", class: "btn btn-primary" %>
+      <%= form.submit "Search", class: "btn btn-primary mt-2" %>
     <% end %>
   </div>
 
-  <table class="activities-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Address</th>
-        <th>Date 1</th>
-        <th>Date 2</th>
-        <th>Date 3</th>
-        <th colspan="3">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @activities.each do |activity| %>
-        <tr>
-          <td><%= activity.name %></td>
-          <td><%= activity.description %></td>
-          <td><%= activity.address %></td>
-          <td><%= activity.date_1 %></td>
-          <td><%= activity.date_2 %></td>
-          <td><%= activity.date_3 %></td>
-          <td><%= link_to 'Show', activity %></td>
-          <td>
-            <% if policy(activity).edit? %>
-              <%= link_to 'Edit', edit_activity_path(activity) %>
-            <% end %>
-          </td>
-          <td>
-            <% if policy(activity).destroy? %>
-              <%= link_to 'Destroy', activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-            <% end %>
-          </td>
-        </tr>
+  <div class="cards-grid">
+    <% @activities.each do |activity| %>
+      <%= link_to activity_path(activity), class: "text-decoration-none" do %>
+        <%= render partial: 'partials/cards', locals: { activity: activity } %>
       <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </div>
 </div>
