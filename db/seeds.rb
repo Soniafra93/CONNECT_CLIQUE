@@ -10,11 +10,12 @@
 
 # Clear existing data
 User.destroy_all
+Activity.destroy_all
 
 # Delete activities associated with each user
-User.all.each do |user|
-  user.activities.destroy_all
-end
+# User.all.each do |user|
+  #user.activities.destroy_all
+#end
 
 # Create Users manually
 # Create user 1
@@ -109,7 +110,7 @@ user4 = User.create!(
 activity4 = Activity.create!(
   name: "Art Class",
   description: "Art class for beginners",
-  address: "Ariel Way Shepherds Bush, London ",
+  address: "Shepherd's Bush Market, London W12 8DF",
   date_1: Date.today + 4.days,
   date_2: Date.today + 6.days,
   date_3: Date.today + 8.days,
@@ -136,7 +137,7 @@ user5 = User.create!(
 activity5 = Activity.create!(
   name: "Movie Night",
   description: "Outdoor movie screening",
-  address: "Triangle d'or, 100 Bd Aïn Taoujtate, Casablanca 20100, Maroc",
+  address: "54-56 Camden Lock Pl, London NW1 8AF",
   date_1: Date.today + 5.days,
   date_2: Date.today + 7.days,
   date_3: Date.today + 9.days,
