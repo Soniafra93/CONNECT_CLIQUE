@@ -33,6 +33,21 @@
   </div>
 
   <div class="field">
+    <label class="form-label">Members</label>
+    <select id="members_select" class="form-control" data-action="change->members#toggleFriendSelection">
+      <option value="all">Public</option>
+      <option value="select">Friends</option>
+    </select>
+  </div>
+
+  <div class="field d-none" id="friends_list">
+    <label class="form-label">Friends</label>
+    <% current_user.friends.each do |friend| %>
+      <div class="form-check">
+        <%= check_box_tag 'activity[friend_ids][]', friend.attendee_id, false, class: 'form-check-input' %>
+        <%= label_tag "activity_friend_ids_#{friend.attendee_id}", friend.attendee.full_name, class: 'form-check-label' %>
+      </div>
+    <% end %>
     <%= form.label :photos, class: 'form-label' %>
     <%= form.file_field :photos, multiple: true, class: 'form-control' %>
   </div>
@@ -41,4 +56,3 @@
     <%= form.submit 'Create Activity', class: 'btn1' %>
   </div>
 <% end %>
-
