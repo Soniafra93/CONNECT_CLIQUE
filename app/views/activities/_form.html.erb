@@ -29,6 +29,11 @@
     <%= form.text_field :date_3, as: :string, data: { controller:"datepicker" }, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :photos, class: 'form-label' %>
+    <%= form.file_field :photos, multiple: true, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Create Activity', class: 'btn1' %>
   </div>
