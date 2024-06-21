@@ -1,44 +1,48 @@
-<div class="container">
+<div class="container my-4">
   <div class="row">
-    <div class="col-md-6">
-      <h1>Friends</h1>
-
-      <ul class="list-group">
-        <% @friends.each do |friend| %>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <%= friend.attendee.try(:full_name) %>
-            <%= link_to "Remove", friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="col-12 mb-4">
+      <h1 class="text-center">Friends</h1>
     </div>
 
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Add Friend</h2>
-          <%= form_tag friends_path, method: :post, class: "mb-3" do %>
-            <div class="form-group">
-              <%= label_tag :friend_full_name, "Friend Full Name" %>
-              <%= text_field_tag :friend_full_name, nil, class: "form-control" %>
-            </div>
-            <%= submit_tag "Add Friend", class: "btn1" %>
-          <% end %>
+    <div class="col-12">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header" style="background-color: #AE62F8; color: white;">
+          Your Friends
         </div>
+        <ul class="list-group list-group-flush">
+          <% @friends.each do |friend| %>
+            <% if policy(friend).show? %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <%= friend.attendee.try(:full_name) %>
+                <%= link_to friend_path(friend), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm remove-btn", title: "Remove" do %>
+                  <i class="fas fa-minus-circle"></i> <!-- Font Awesome minus circle icon -->
+                <% end %>
+              </li>
+            <% else %>
+              <li class="list-group-item text-muted">You are not authorized to view this friend.</li>
+            <% end %>
+          <% end %>
+        </ul>
       </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="card">
+    <div class="col-12">
+      <div class="card shadow-sm">
         <div class="card-body">
-          <h2 class="card-title">Add Friend</h2>
-          <% @users.each do |user| %>
-            <p><%= user.first_name %></p>
-            <%= link_to "Add friend", friends_path(attendee_id: user.id), data: { turbo_method: :post }%>
+          <h2 class="card-title text-center mb-4" style="color: #5304BF;">Add Friend</h2>
+          <%= form_with model: Friend.new, url: friends_path, local: true do |form| %>
+            <% if policy(Friend.new).create? %>
+              <div class="form-group mb-3">
+                <%= form.label :attendee_id, "Friend Full Name", class: "form-label", style: "color: #C6C4B7;" %>
+                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, class: "form-select" %>
+              </div>
+              <div class="d-grid">
+                <%= form.submit "Add Friend", class: "btn btn-primary", style: "background-color: #AE62F8; border-color: #AE62F8;" %>
+              </div>
+            <% else %>
+              <p class="text-center text-muted">You are not authorized to add friends.</p>
+            <% end %>
           <% end %>
-          <%# <%= simple_form_for @friend do |f| %>
-            <%# <%= f.hidden_field %>
-          <%# <% end %>
         </div>
       </div>
     </div>
