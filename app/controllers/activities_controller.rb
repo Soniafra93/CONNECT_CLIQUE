@@ -4,6 +4,9 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = policy_scope(Activity)
+    if params[:query].present?
+      @activities = @activities.where("name ILIKE ?", "%#{params[:query]}%")
+    end
   end
 
   def show

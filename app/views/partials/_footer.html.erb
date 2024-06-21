@@ -1,8 +1,9 @@
+<!-- footer.html.erb -->
 <div class="footer">
   <div class="footer-links d-flex justify-content-between">
     <%= link_to image_tag("home.png", alt: "Home"), root_path %>
     <%= link_to image_tag("add.png", alt: "Add"), new_activity_path %>
-    <%= link_to image_tag("search.png", alt: "Search"), '#' %>
+    <%= link_to image_tag("search.png", alt: "Search"), activities_path %> 
     <%= link_to image_tag("bell.png", alt: "Bell"), '#' %>
   </div>
 </div>
