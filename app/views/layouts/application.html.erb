@@ -10,12 +10,13 @@
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
+    <body>
+      <%= render 'partials/navbar' %>
 
-  <body>
-    <%= render 'partials/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-    <%= render 'partials/footer' %>
-  </body>
+      <div class="container" style="max-width: 800px;"> <!-- Set max-width to match your desired width -->
+        <%= yield %>
+      </div>
+
+      <%= render 'partials/footer' %>
+    </body>
 </html>

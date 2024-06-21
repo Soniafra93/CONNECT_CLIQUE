@@ -1,41 +1,95 @@
+.calendar-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
 .simple-calendar {
-  table {
-    min-height: 80vh;
-  }
-  .today {
-    background-color: #faf3dd;
-  }
-}
-
-.meeting {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #1edd88;
-  transition: background 0.3s ease;
-}
-
-.meeting:hover {
-  background: #1bcb7f;
-  color: white;
-}
-
-.custom-calendar-title {
-  background-color: #f7f7f7 !important; /* Changed background color */
-  color: black; /* Change text color if needed */
-  border: none; /* Remove border */
-}
-
-.custom-calendar-title:focus {
-  outline: none; /* Remove blue outline */
-  box-shadow: none; /* Remove any box shadow */
+  width: 100%;
 }
 
 .calendar-heading {
-  text-align: left; /* Ensure the heading is left-aligned */
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.custom-calendar-title {
+  background-color: #f7f7f7;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.chevron-left,
+.chevron-right {
+  font-size: 1.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f8f9fa;
 }
 
 .bg-success {
   background-color: #28a745 !important;
   color: #fff;
+}
+
+.day {
+  min-height: 80px;
+}
+
+.activity {
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.activity-link {
+  color: #333;
+  text-decoration: none;
+}
+
+.activity-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .calendar-container {
+    padding: 0 10px;
+  }
+
+  .table th,
+  .table td {
+    padding: 5px;
+    font-size: 0.9rem;
+  }
+
+  .day {
+    min-height: 60px;
+  }
+
+  .activity {
+    font-size: 0.7rem;
+  }
 }
