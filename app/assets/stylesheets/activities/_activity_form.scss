@@ -62,3 +62,17 @@
     }
   }
 }
+/* this is for the search form in the index page of activities */
+.search-form {
+  margin-bottom: 20px;
+
+  .form-control {
+    width: 100%;
+    max-width: 300px;
+    display: inline-block;
+  }
+
+  .btn {
+    margin-left: 10px;
+  }
+}
