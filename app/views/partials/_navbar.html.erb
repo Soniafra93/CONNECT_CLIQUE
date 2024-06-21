@@ -6,7 +6,13 @@
     <div class="d-flex justify-content-end">
       <div class="dropdown">
         <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <%= image_tag "default-avatar.avif", alt: "Avatar", width: "40", height: "40", class: "rounded-circle" %>
+          <% if user_signed_in? %>
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, alt: "Avatar", width: "40", height: "40", class: "rounded-circle" %>
+            <% else %>
+              <%= image_tag "default-avatar.avif", alt: "Avatar", width: "40", height: "40", class: "rounded-circle" %>
+            <% end %>
+          <% end %>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" style="background-color: rgba(255, 255, 255, 0.8);">
           <li><%= link_to "Log In", "#", class: "dropdown-item", style: "color: black;" %></li>

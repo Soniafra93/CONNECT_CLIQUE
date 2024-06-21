@@ -28,11 +28,33 @@
     <p><strong>Time:</strong> Time not set</p>
   <% end %>
 
+  <!-- Display photos -->
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% @activity.photos.each_with_index do |photo, index| %>
+      <div class="carousel-item <%= 'active' if index == 0 %>">
+        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :pad, class: 'd-block w-100' %>
+      </div>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
   <!-- Edit and Vote links -->
-  <% if policy(@activity).edit? %>
-    <%= link_to 'Edit', edit_activity_path(@activity) %> |
-  <% end %>
-  <%= link_to 'Back', activities_path %> |
+  <div>
+    <% if policy(@activity).edit? %>
+      <%= link_to 'Edit', edit_activity_path(@activity) %> |
+    <% end %>
+    <%= link_to 'Back', activities_path %> |
+  </div>
 
   <!-- Show Vote button if voting is still open -->
   <% if current_user == @activity.user && !@activity.voting_closed %>
