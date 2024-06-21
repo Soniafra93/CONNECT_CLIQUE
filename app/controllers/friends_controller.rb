@@ -8,11 +8,7 @@ class FriendsController < ApplicationController
   end
 
   def create
-    # friend_full_name = params[:friend_full_name].strip
-
-    # friend = User.find_by("LOWER(CONCAT(first_name, ' ', last_name)) = ?", friend_full_name.downcase)
     @attendee = User.find(params[:attendee_id])
-    # @friend = Friend.new
 
     authorize(Friend)
 
@@ -28,13 +24,11 @@ class FriendsController < ApplicationController
     end
   end
 
-
-
   def destroy
-    authorize(@friend)
+    friend = current_user.friends.find_by(id: params[:id])
 
-    friend = current_user.friends.find_by(attendee_id: params[:id])
     if friend
+      authorize(friend)
       friend.destroy
       redirect_to friends_path, notice: "Friend removed successfully."
     else

@@ -7,7 +7,7 @@
         <% @friends.each do |friend| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <%= friend.attendee.try(:full_name) %>
-            <%= link_to "Remove", friend_path(friend), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+            <%= link_to "Remove", friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
           </li>
         <% end %>
       </ul>
