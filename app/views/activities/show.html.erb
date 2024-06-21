@@ -3,10 +3,10 @@
   <p><strong>Description:</strong> <%= @activity.description %></p>
   <p><strong>Address:</strong> <%= @activity.address %></p>
 
-  <!-- Display each date option -->
-  <p><strong>Date 1:</strong> <%= @activity.date_1 %></p>
-  <p><strong>Date 2:</strong> <%= @activity.date_2 %></p>
-  <p><strong>Date 3:</strong> <%= @activity.date_3 %></p>
+  <!-- Display each date option with its corresponding time -->
+  <p><strong>Date 1:</strong> <%= @activity.date_1 %> <strong>at </strong> <%= @activity.time_1.present? ? @activity.time_1.strftime("%H:%M %p") : 'Time not set' %></p>
+  <p><strong>Date 2:</strong> <%= @activity.date_2 %> <strong>at </strong> <%= @activity.time_2.present? ? @activity.time_2.strftime("%H:%M %p") : 'Time not set' %></p>
+  <p><strong>Date 3:</strong> <%= @activity.date_3 %> <strong>at </strong><%= @activity.time_3.present? ? @activity.time_3.strftime("%H:%M %p") : 'Time not set' %></p>
 
   <!-- Display the winning/most voted date -->
   <p>
@@ -14,7 +14,7 @@
     <% if @activity.winning_date.present? %>
       <span class="text-success"><%= @activity.winning_date %> ✅</span>
     <% else %>
-      <%= @activity.most_voted_date %>
+      <span>No votes yet</span>
     <% end %>
   </p>
 
@@ -25,7 +25,7 @@
       <%= @activity.start_time.strftime("%H:%M %p") %> - <%= @activity.end_time.strftime("%H:%M %p") %>
     </p>
   <% else %>
-    <p><strong>Time:</strong> Time not set</p>
+    <p><strong>Time of Activity:</strong> No votes yet</p>
   <% end %>
 
   <!-- Edit and Vote links -->

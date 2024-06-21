@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_20_085949) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_21_173500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_085949) do
     t.datetime "end_time"
     t.boolean "voting_closed"
     t.date "winning_date"
+    t.time "time_1"
+    t.time "time_2"
+    t.time "time_3"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
