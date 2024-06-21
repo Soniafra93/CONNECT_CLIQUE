@@ -48,6 +48,8 @@
         <%= label_tag "activity_friend_ids_#{friend.attendee_id}", friend.attendee.full_name, class: 'form-check-label' %>
       </div>
     <% end %>
+    <%= form.label :photos, class: 'form-label' %>
+    <%= form.file_field :photos, multiple: true, class: 'form-control' %>
   </div>
 
   <div class="actions">

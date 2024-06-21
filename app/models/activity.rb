@@ -2,6 +2,7 @@ class Activity < ApplicationRecord
   belongs_to :user
   has_many :attendances, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many_attached :photos
 
   validates :name, :description, :address, :date_1, :date_2, :date_3, presence: true
 
