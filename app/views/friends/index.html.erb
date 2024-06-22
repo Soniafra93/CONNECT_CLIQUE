@@ -35,7 +35,6 @@
               <div class="form-group mb-3">
                 <%= form.label :attendee_id, "Friend Full Name", class: "form-label", style: "color: #C6C4B7;" %>
                 <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, class: "form-select", input_html: {data: {controller: "tom-select"}} %>
-                <%= f.input :attendee_id, collection: , input_html: {data: {controller: "tom-select"}} %>
               </div>
               <div class="d-grid">
                 <%= form.submit "Add Friend", class: "btn btn-primary", style: "background-color: #AE62F8; border-color: #AE62F8;" %>
