@@ -32,6 +32,9 @@ class ActivitiesController < ApplicationController
     @activity = current_user.activities.build(activity_params)
     @activity.user = current_user
 
+    # Split datetime strings into separate date and time attributes
+    split_datetime_fields(@activity)
+
     authorize(@activity)
 
     if @activity.save
@@ -48,6 +51,9 @@ class ActivitiesController < ApplicationController
 
   def update
     authorize(@activity)
+
+    # Split datetime strings into separate date and time attributes
+    split_datetime_fields(@activity)
 
     if @activity.update(activity_params)
       redirect_to @activity, notice: 'Activity was successfully updated.'
@@ -87,5 +93,18 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, photos: [], friend_ids: [])
+  end
+
+  def split_datetime_fields(activity)
+    activity.date_1, activity.time_1 = split_datetime(params[:activity][:date_1])
+    activity.date_2, activity.time_2 = split_datetime(params[:activity][:date_2])
+    activity.date_3, activity.time_3 = split_datetime(params[:activity][:date_3])
+  end
+
+  def split_datetime(datetime_string)
+    return if datetime_string.blank?
+
+    datetime = DateTime.parse(datetime_string)
+    [datetime.to_date, datetime.to_time]
   end
 end

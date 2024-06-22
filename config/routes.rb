@@ -6,10 +6,7 @@ Rails.application.routes.draw do
     post 'close_voting', on: :member
     resources :attendances, only: [:index, :create, :new, :edit, :show, :update, :destroy]
   end
-
   resources :friends, only: [:index, :create, :destroy, :show]
-
-
   root 'pages#home'
   get '/up', to: 'rails/health#show'
 end

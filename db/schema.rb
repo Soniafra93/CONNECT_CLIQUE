@@ -59,6 +59,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_21_173212) do
     t.datetime "end_time"
     t.boolean "voting_closed"
     t.date "winning_date"
+    t.time "time_1"
+    t.time "time_2"
+    t.time "time_3"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
