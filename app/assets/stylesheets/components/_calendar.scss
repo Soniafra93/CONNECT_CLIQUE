@@ -70,12 +70,17 @@
 .event-dot {
   width: 8px;
   height: 8px;
-  background-color: #C6C4B7;
+  background-color: rgb(3, 196, 3);
   border-radius: 50%;
   position: absolute;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
+  transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.event-dot-link:hover .event-dot {
+  background-color: #5304bf;
 }
 
 .event-dot-link {
