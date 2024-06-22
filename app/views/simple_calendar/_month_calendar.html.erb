@@ -29,21 +29,12 @@
                 <%= content_tag :td, class: td_classes do %>
                   <div class="day">
                     <strong><%= date.day %></strong>
-                    <% activities = @sorted_events[date] || [] %>
-                    <% activities.each do |activity| %>
-                      <div class="activity">
-                        <p>
-                          <%= link_to activity.name, activity_path(activity), class: 'activity-link' %>
-                          <br>
-                          <small class="text-muted">
-                            <% if activity.start_time.present? && activity.end_time.present? %>
-                              <%= activity.start_time.strftime("%H:%M") %> - <%= activity.end_time.strftime("%H:%M") %>
-                            <% else %>
-                              Time not set
-                            <% end %>
-                          </small>
-                        </p>
-                      </div>
+                    <% if (@sorted_events ||= {})[date] %>
+                      <% @sorted_events[date].each do |event| %>
+                        <%= link_to activity_path(event), class: 'event-dot-link' do %>
+                          <div class="event-dot"></div>
+                        <% end %>
+                      <% end %>
                     <% end %>
                   </div>
                 <% end %>
