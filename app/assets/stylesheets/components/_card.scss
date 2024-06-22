@@ -31,6 +31,16 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
+  transition: all 0.3s ease; /* Add this line */
+}
+
+/* Add these new rules after the main .custom-event-card class */
+.custom-event-card:hover .custom-event-card__title {
+  color: #5304bf;
+}
+
+.custom-event-card:hover .custom-event-card__description {
+  color: #ae62f8;
 }
 
 .custom-event-card__content {
