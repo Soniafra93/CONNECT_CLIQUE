@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :attendances
   has_many :votes
   has_many :friends
+  has_one_attached :photo
 
   validates :first_name, presence: true
   validates :last_name, presence: true

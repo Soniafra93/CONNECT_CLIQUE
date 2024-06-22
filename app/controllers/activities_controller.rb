@@ -38,6 +38,11 @@ class ActivitiesController < ApplicationController
     authorize(@activity)
 
     if @activity.save
+      if params[:activity][:friend_ids].present?
+        params[:activity][:friend_ids].each do |friend_id|
+          @activity.attendances.create(user_id: friend_id)
+        end
+      end
       redirect_to @activity, notice: 'Activity was successfully created.'
     else
       render :new
@@ -87,7 +92,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id)
+    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, photos: [], friend_ids: [])
   end
 
   def split_datetime_fields(activity)

@@ -1,17 +1,23 @@
-<%= form_with(model: activity, local: true, class: 'activity-form') do |form| %>
+<%= simple_form_for(activity, html: { class: 'activity-form' }) do |form| %>
   <div class="field">
-    <%= form.label :name, class: 'form-label' %>
-    <%= form.text_field :name, class: 'form-control' %>
+    <%= form.input :name, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
   </div>
 
   <div class="field">
-    <%= form.label :description, class: 'form-label' %>
-    <%= form.text_area :description, class: 'form-control' %>
+    <%= form.input :description, as: :text, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
   </div>
 
   <div class="field">
-    <%= form.label :address, class: 'form-label' %>
-    <%= form.text_field :address, class: 'form-control' %>
+    <%= form.input :address,
+      input_html: {
+        data: { address_autocomplete_target: "address" },
+        class: "d-none"
+      },
+      wrapper_html: {
+        data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] }
+      },
+      label_html: { class: 'form-label' }
+    %>
   </div>
 
   <div class="field">
@@ -27,6 +33,29 @@
   <div class="field">
     <%= form.label :date_3, class: 'form-label' %>
     <%= form.text_field :date_3, as: :string, data: { controller: "datepicker" }, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <label class="form-label">Members</label>
+    <select id="members_select" class="form-control" data-action="change->members#toggleFriendSelection">
+      <option value="all">Public</option>
+      <option value="select">Friends</option>
+    </select>
+  </div>
+
+  <div class="field d-none" id="friends_list">
+    <label class="form-label">Friends</label>
+    <% current_user.friends.each do |friend| %>
+      <div class="form-check">
+        <%= check_box_tag 'activity[friend_ids][]', friend.attendee_id, false, class: 'form-check-input' %>
+        <%= label_tag "activity_friend_ids_#{friend.attendee_id}", friend.attendee.full_name, class: 'form-check-label' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :photos, class: 'form-label' %>
+    <%= form.file_field :photos, multiple: true, class: 'form-control' %>
   </div>
 
   <div class="actions">
