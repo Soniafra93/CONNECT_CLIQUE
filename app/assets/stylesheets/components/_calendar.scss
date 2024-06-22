@@ -14,7 +14,7 @@
 }
 
 .custom-calendar-title {
-  background-color: #f7f7f7;
+  background-color: whitesmoke;
   color: black;
   border: none;
   padding: 5px 10px;
@@ -49,16 +49,16 @@
 
 /* Adjust background color directly for td elements */
 .table td {
-  background-color: whitesmoke;
+  background-color: white;
   font-weight: lighter;
 }
 
 .table th {
-  background-color: #f8f9fa;
+  background-color: white;
 }
 
 .bg-success {
-  background-color: #ae62f8 !important;
+  background-color: white !important;
   color: #fff;
 }
 
@@ -70,7 +70,7 @@
 .event-dot {
   width: 8px;
   height: 8px;
-  background-color: #333;
+  background-color: #C6C4B7;
   border-radius: 50%;
   position: absolute;
   bottom: 5px;
@@ -141,7 +141,10 @@
     .day {
       height: 40px !important;
       min-height: 30px;
-      background-color: whitesmoke;
+      box-shadow: none;
+    }
+    .prev-month {
+      background: white !important;
     }
   }
 
