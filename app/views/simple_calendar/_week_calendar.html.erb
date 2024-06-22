@@ -23,11 +23,16 @@
         <tr>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
-                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
-              <% else %>
-                <% passed_block.call day, sorted_events.fetch(day, []) %>
-              <% end %>
+              <div class="day">
+                <strong><%= day.day %></strong>
+                <% if (@sorted_events ||= {})[day] %>
+                  <% @sorted_events[day].each do |event| %>
+                    <%= link_to activity_path(event), class: 'event-dot-link' do %>
+                      <div class="event-dot"></div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
             <% end %>
           <% end %>
         </tr>

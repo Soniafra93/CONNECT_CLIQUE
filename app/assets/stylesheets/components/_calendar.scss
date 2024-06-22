@@ -47,17 +47,41 @@
   text-align: left;
 }
 
+/* Adjust background color directly for td elements */
+.table td {
+  background-color: whitesmoke;
+  font-weight: lighter;
+}
+
 .table th {
   background-color: #f8f9fa;
 }
 
 .bg-success {
-  background-color: #28a745 !important;
+  background-color: #ae62f8 !important;
   color: #fff;
 }
 
 .day {
-  min-height: 80px;
+  height: 60px;
+  position: relative;
+}
+
+.event-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #333;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.event-dot-link {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
 
 .activity {
@@ -66,7 +90,7 @@
 }
 
 .activity-link {
-  color: #333;
+  color: black;
   text-decoration: none;
 }
 
@@ -74,22 +98,86 @@
   text-decoration: underline;
 }
 
+/* Adjustments for smaller screens */
 @media (max-width: 767px) {
   .calendar-container {
-    padding: 0 10px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+  }
+
+  .calendar-heading {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .calendar-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
+  }
+
+  .calendar-navigation a {
+    margin: 0 10px;
+  }
+
+  .calendar-title {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  .table {
+    font-size: 0.8rem;
   }
 
   .table th,
   .table td {
-    padding: 5px;
-    font-size: 0.9rem;
+    padding: 4px;
+    font-size: 0.75rem;
   }
 
-  .day {
-    min-height: 60px;
+  .simple-calendar {
+    .day {
+      height: 40px !important;
+      min-height: 30px;
+      background-color: whitesmoke;
+    }
   }
 
   .activity {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .calendar-heading {
+    font-size: 0.9rem;
+  }
+
+  .calendar-title {
+    font-size: 1rem;
+  }
+
+  .table th,
+  .table td {
     font-size: 0.7rem;
+    padding: 3px;
+  }
+
+  .day {
+    min-height: 30px;
+  }
+
+  .activity {
+    font-size: 0.6rem;
+  }
+
+  .calendar-navigation {
+    justify-content: space-around;
+  }
+
+  .calendar-navigation a {
+    margin: 0 5px;
   }
 }
