@@ -14,7 +14,7 @@
             <% if policy(friend).show? %>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <%= friend.attendee.try(:full_name) %>
-                <%= link_to friend_path(friend), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm remove-btn", title: "Remove" do %>
+                <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm remove-btn", title: "Remove" do %>
                   <i class="fas fa-minus-circle"></i> <!-- Font Awesome minus circle icon -->
                 <% end %>
               </li>
@@ -34,7 +34,7 @@
             <% if policy(Friend.new).create? %>
               <div class="form-group mb-3">
                 <%= form.label :attendee_id, "Friend Full Name", class: "form-label", style: "color: #C6C4B7;" %>
-                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, class: "form-select" %>
+                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, class: "form-select", input_html: {data: {controller: "tom-select"}} %>
               </div>
               <div class="d-grid">
                 <%= form.submit "Add Friend", class: "btn btn-primary", style: "background-color: #AE62F8; border-color: #AE62F8;" %>
