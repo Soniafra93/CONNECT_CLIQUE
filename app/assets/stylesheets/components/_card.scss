@@ -25,16 +25,15 @@
 
 .custom-event-card {
   width: 100%;
-  height: 150px;
+  height: 110px; /* Adjust height to fit better on iPhone 14 Pro Max */
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
-  transition: all 0.3s ease; /* Add this line */
+  transition: all 0.3s ease;
 }
 
-/* Add these new rules after the main .custom-event-card class */
 .custom-event-card:hover .custom-event-card__title {
   color: #5304bf;
 }
@@ -46,15 +45,16 @@
 .custom-event-card__content {
   flex: 1;
   min-width: 0;
-  padding: 16px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .custom-event-card__title {
-  font-size: 1.25rem;
+  font-size: 0.9rem; /* Adjust font size */
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   color: #333;
   white-space: nowrap;
   overflow: hidden;
@@ -62,11 +62,10 @@
 }
 
 .custom-event-card__description {
-  font-size: 0.9rem;
+  font-size: 0.75rem; /* Adjust font size */
   color: #666;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   line-height: 1.4;
-  flex-grow: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -75,7 +74,7 @@
 }
 
 .custom-event-card__datetime {
-  font-size: 0.85rem;
+  font-size: 0.7rem; /* Adjust font size */
   color: #888;
   display: flex;
   align-items: center;
@@ -86,9 +85,10 @@
 }
 
 .custom-event-card__image-container {
-  flex: 0 0 40%;
-  max-width: 40%;
+  flex: 0 0 30%;
+  max-width: 30%;
   overflow: hidden;
+  position: relative;
 }
 
 .custom-event-card__image {
@@ -112,7 +112,7 @@
   font-size: 1rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 576px) {
   .home-container {
     padding: 10px;
   }
@@ -122,28 +122,28 @@
   }
 
   .custom-event-card {
-    height: 120px;
+    height: 90px; /* Adjust height for smaller screens */
   }
 
   .custom-event-card__content {
-    padding: 12px;
+    padding: 8px;
   }
 
   .custom-event-card__title {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .custom-event-card__description {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     -webkit-line-clamp: 2;
   }
 
   .custom-event-card__datetime {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
   }
 
   .custom-event-card__image-container {
-    flex: 0 0 35%;
-    max-width: 35%;
+    flex: 0 0 25%;
+    max-width: 25%;
   }
 }

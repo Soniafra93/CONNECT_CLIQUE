@@ -13,7 +13,6 @@
   </div>
   <div class="custom-event-card__image-container">
     <% if activity.respond_to?(:photos) && activity.photos.attached? %>
-      <%# <%= image_tag activity.photo, class: "custom-event-card__image", alt: activity.name %>
       <%= cl_image_tag activity.photos.first.key, class: "custom-event-card__image", alt: activity.name %>
     <% else %>
       <div class="custom-event-card__placeholder"></div>
