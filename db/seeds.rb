@@ -12,11 +12,6 @@
 User.destroy_all
 Activity.destroy_all
 
-# Delete activities associated with each user
-# User.all.each do |user|
-  #user.activities.destroy_all
-#end
-
 # Create Users manually
 # Create user 1
 user1 = User.create!(
@@ -42,8 +37,7 @@ Vote.create!(
   user: user1,
   activity: activity1
 )
-puts "Created User #{user1.first_name} with Activity '#{activity1.name}'"
-
+puts "Created User #{user1.first_name} with Activity #{activity1.name}"
 # Create user 2
 user2 = User.create!(
   first_name: "Jane",

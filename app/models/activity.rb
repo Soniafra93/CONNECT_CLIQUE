@@ -1,13 +1,13 @@
 class Activity < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   belongs_to :user
   has_many :attendances, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many_attached :photos
 
   validates :name, :description, :address, :date_1, :date_2, :date_3, presence: true
-
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
 
   def determine_winning_date
     dates = [date_1, date_2, date_3].uniq.compact  # Ensure dates are distinct and remove nil values
