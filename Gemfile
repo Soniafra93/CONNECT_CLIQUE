@@ -3,7 +3,6 @@ source "https://rubygems.org"
 ruby "3.1.2"
 
 gem "devise"
-
 gem "geocoder"
 
 gem "pundit"
