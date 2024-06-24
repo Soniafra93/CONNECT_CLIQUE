@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :activities, dependent: :destroy
-  has_many :attendances
-  has_many :votes
-  has_many :friends
+  has_many :attendances, dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :friends, dependent: :destroy
   has_one_attached :photo
 
   validates :first_name, presence: true

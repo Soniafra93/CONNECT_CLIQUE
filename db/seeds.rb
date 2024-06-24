@@ -9,8 +9,9 @@
 #   end
 
 # Clear existing data
-User.destroy_all
+Friend.destroy_all
 Activity.destroy_all
+User.destroy_all
 
 # Delete activities associated with each user
 # User.all.each do |user|
