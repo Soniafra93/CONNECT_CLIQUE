@@ -54,8 +54,8 @@
         <%= link_to 'Edit', edit_activity_path(@activity) %> |
       <% end %>
       <%= link_to 'Back', activities_path %> |
+      <%= link_to 'Vote', new_activity_vote_path(@activity), class: 'btn1' %>
       <% if current_user == @activity.user && !@activity.voting_closed %>
-        <%= link_to 'Vote', new_activity_vote_path(@activity), class: 'btn1' %>
         <%= button_to 'Close Voting', close_voting_activity_path(@activity), method: :post, class: 'btn1' %>
       <% end %>
     </div>
