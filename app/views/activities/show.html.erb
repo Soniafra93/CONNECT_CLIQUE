@@ -1,69 +1,68 @@
-<div class="container">
-  <p><strong>Name:</strong> <%= @activity.name %></p>
-  <p><strong>Description:</strong> <%= @activity.description %></p>
-  <p><strong>Address:</strong> <%= @activity.address %></p>
+<div class="container mt-4"> <!-- Added margin-top class to create space between navbar and content -->
+  <div class="show-activity-card">
+    <h2 class="show-activity-title"><%= @activity.name %></h2>
+    <p class="show-activity-detail"><strong>Description:</strong> <%= @activity.description %></p>
+    <p class="show-activity-detail"><strong>Address:</strong> <%= @activity.address %></p>
 
-  <!-- Display each date option with its corresponding time -->
-  <p><strong>Date 1:</strong> <%= @activity.date_1 %> <strong>at </strong> <%= @activity.time_1.present? ? @activity.time_1.strftime("%H:%M %p") : 'Time not set' %></p>
-  <p><strong>Date 2:</strong> <%= @activity.date_2 %> <strong>at </strong> <%= @activity.time_2.present? ? @activity.time_2.strftime("%H:%M %p") : 'Time not set' %></p>
-  <p><strong>Date 3:</strong> <%= @activity.date_3 %> <strong>at </strong><%= @activity.time_3.present? ? @activity.time_3.strftime("%H:%M %p") : 'Time not set' %></p>
+    <!-- Display each date option with its corresponding time -->
+    <p class="show-activity-detail"><strong>Date 1:</strong> <%= @activity.date_1 %> <strong>at </strong> <%= @activity.time_1.present? ? @activity.time_1.strftime("%H:%M %p") : 'Time not set' %></p>
+    <p class="show-activity-detail"><strong>Date 2:</strong> <%= @activity.date_2 %> <strong>at </strong> <%= @activity.time_2.present? ? @activity.time_2.strftime("%H:%M %p") : 'Time not set' %></p>
+    <p class="show-activity-detail"><strong>Date 3:</strong> <%= @activity.date_3 %> <strong>at </strong><%= @activity.time_3.present? ? @activity.time_3.strftime("%H:%M %p") : 'Time not set' %></p>
 
-  <!-- Display the winning/most voted date -->
-  <p>
-    <strong>Date of Activity:</strong>
-    <% if @activity.winning_date.present? %>
-      <span class="text-success"><%= @activity.winning_date %> ✅</span>
-    <% else %>
-      <span>No votes yet</span>
-    <% end %>
-  </p>
-
-  <!-- Display time details -->
-  <% if @activity.start_time.present? && @activity.end_time.present? %>
-    <p>
-      <strong>Time of Activity:</strong>
-      <%= @activity.start_time.strftime("%H:%M %p") %> - <%= @activity.end_time.strftime("%H:%M %p") %>
+    <!-- Display the winning/most voted date -->
+    <p class="show-activity-detail">
+      <strong>Date of Activity:</strong>
+      <% if @activity.winning_date.present? %>
+        <span class="text-success"><%= @activity.winning_date %> ✅</span>
+      <% else %>
+        <span>No votes yet</span>
+      <% end %>
     </p>
-  <% else %>
-    <p><strong>Time of Activity:</strong> No votes yet</p>
-  <% end %>
 
-  <!-- Display photos -->
-  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <% @activity.photos.each_with_index do |photo, index| %>
-      <div class="carousel-item <%= 'active' if index == 0 %>">
-        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :pad, class: 'd-block w-100' %>
+    <!-- Display time details -->
+    <% if @activity.start_time.present? && @activity.end_time.present? %>
+      <p class="show-activity-detail">
+        <strong>Time of Activity:</strong>
+        <%= @activity.start_time.strftime("%H:%M %p") %> - <%= @activity.end_time.strftime("%H:%M %p") %>
+      </p>
+    <% else %>
+      <p class="show-activity-detail"><strong>Time of Activity:</strong> No votes yet</p>
+    <% end %>
+
+    <!-- Display photos -->
+    <div id="carouselExample" class="carousel slide carousel-container" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @activity.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :pad, class: 'd-block w-100' %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Edit and Vote links -->
+    <div class="btn-container">
+      <% if policy(@activity).edit? %>
+        <%= link_to 'Edit', edit_activity_path(@activity) %> |
+      <% end %>
+      <%= link_to 'Back', activities_path %> |
+      <% if current_user == @activity.user && !@activity.voting_closed %>
+        <%= link_to 'Vote', new_activity_vote_path(@activity), class: 'btn1' %>
+        <%= button_to 'Close Voting', close_voting_activity_path(@activity), method: :post, class: 'btn1' %>
+      <% end %>
+    </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-
-  <!-- Edit and Vote links -->
-  <div>
-    <% if policy(@activity).edit? %>
-      <%= link_to 'Edit', edit_activity_path(@activity) %> |
-    <% end %>
-    <%= link_to 'Back', activities_path %> |
-  </div>
-
-  <!-- Show Vote button if voting is still open -->
-  <% if current_user == @activity.user && !@activity.voting_closed %>
-    <%= link_to 'Vote', new_activity_vote_path(@activity) %>
-    <%= button_to 'Close Voting', close_voting_activity_path(@activity), method: :post, class: 'btn1' %>
-  <% end %>
 
   <!-- Map display -->
-  <div id="map" style="width: 100%; height: 600px;"
+  <div id="map" class="map-container"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
