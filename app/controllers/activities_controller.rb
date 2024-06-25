@@ -7,6 +7,10 @@ class ActivitiesController < ApplicationController
     if params[:query].present?
       @activities = @activities.where("name ILIKE ?", "%#{params[:query]}%")
     end
+
+    if @activities.empty? && params[:query].present?
+      flash.now[:alert] = "No activities found under the name '#{params[:query]}'"
+    end
   end
 
   def show
