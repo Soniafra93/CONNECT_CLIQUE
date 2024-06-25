@@ -7,18 +7,18 @@
     align-items: center;
 
     .app-name {
-      font-size: 1.5rem; /* Slightly larger font size for emphasis */
+      font-size: 1.5rem;
       font-weight: bold;
 
       .connect {
-        font-family: 'YourPrimaryFont', sans-serif; /* Replace with your chosen font */
-        color: #5304BF; /* Using the primary palette color */
+        font-family: 'YourPrimaryFont', sans-serif;
+        color: #5304BF;
       }
 
       .clique {
-        font-family: 'YourItalicFont', sans-serif; /* Replace with your chosen italic font */
+        font-family: 'YourItalicFont', sans-serif;
         font-style: italic;
-        color: #AE62F8; /* Using a complementary palette color */
+        color: #AE62F8;
       }
     }
   }
@@ -68,4 +68,3 @@
     }
   }
 }
-
