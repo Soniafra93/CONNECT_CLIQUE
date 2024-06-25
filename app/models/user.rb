@@ -17,4 +17,13 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def friend_of?(user)
+    friendship = Friend.find_by(user: self, attendee: user)||Friend.find_by(user: user, attendee: self)
+    friendship.present?
+  end
+
+  def mine_and_friend_user_ids
+    Friend.where("user_id = :user OR attendee_id = :user", user: self).pluck(:user_id, :attendee_id).flatten.uniq
+  end
 end

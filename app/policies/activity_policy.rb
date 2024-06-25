@@ -36,7 +36,11 @@ class ActivityPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
+      if user.mine_and_friend_user_ids.present?
+        scope.where( user: user.mine_and_friend_user_ids)
+      else
+        scope.where( user: user)
+      end
     end
   end
 end
