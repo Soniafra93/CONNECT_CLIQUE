@@ -15,8 +15,8 @@
 .show-activity-title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
-  color: #5304BF; /* Primary color */
+  margin-bottom: 30px; /* Increased margin-bottom to add more space */
+  color: #5304bf; /* Primary color */
 }
 
 .show-activity-detail {
@@ -30,11 +30,17 @@
 }
 
 .carousel-container {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Reduced margin-bottom back to default */
 }
 
 .carousel-item img {
   border-radius: 12px;
+  object-fit: cover;
+}
+
+.modern-photo {
+  border: 2px solid #AE62F8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .map-container {
@@ -46,21 +52,49 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.btn-container {
+.attendees-container {
   margin-top: 20px;
 }
 
-.btn1 {
-  background-color: #5304BF;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.btn1:hover {
-  background-color: #AE62F8;
+.avatar {
+  text-align: center;
+}
+
+.avatar-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #5304bf; /* Primary color */
+}
+
+.avatar-name {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  color: #666666;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center; /* Center align content */
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping for responsive design */
+}
+
+.vote-button {
+  margin: 0 auto; /* Center the vote button */
+}
+
+.three-dots-icon {
+  width: 24px; /* Adjust the size as needed */
+  height: 24px;
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -79,10 +113,6 @@
   .btn1 {
     width: 100%;
     text-align: center;
-    padding: 10px 0;
-  }
-
-  .map-container {
-    height: 250px; /* Adjust height for mobile devices */
   }
 }
+

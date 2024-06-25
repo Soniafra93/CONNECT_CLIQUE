@@ -13,6 +13,9 @@ Friend.destroy_all
 Activity.destroy_all
 User.destroy_all
 
+# Define image paths
+image_path = Rails.root.join('app', 'assets', 'activities_images')
+
 # Create Users manually
 # Create user 1
 user1 = User.create!(
@@ -30,7 +33,10 @@ activity1 = Activity.create!(
   date_1: Date.today + 1.day,
   date_2: Date.today + 3.days,
   date_3: Date.today + 5.days,
-  user: user1
+  user: user1,
+  photos: [
+    File.open(image_path.join('morning_jogging.png')),
+  ]
 )
 
 Vote.create!(
@@ -55,7 +61,10 @@ activity2 = Activity.create!(
   date_1: Date.today + 2.days,
   date_2: Date.today + 4.days,
   date_3: Date.today + 6.days,
-  user: user2
+  user: user2,
+  photos: [
+    File.open(image_path.join('yoga_class.png')),
+  ]
 )
 
 Vote.create!(
@@ -82,7 +91,10 @@ activity3 = Activity.create!(
   date_1: Date.today + 3.days,
   date_2: Date.today + 5.days,
   date_3: Date.today + 7.days,
-  user: user3
+  user: user3,
+  photos: [
+    File.open(image_path.join('basketball_game.png')),
+  ]
 )
 
 Vote.create!(
@@ -109,7 +121,10 @@ activity4 = Activity.create!(
   date_1: Date.today + 4.days,
   date_2: Date.today + 6.days,
   date_3: Date.today + 8.days,
-  user: user4
+  user: user4,
+  photos: [
+    File.open(image_path.join('art_class.png')),
+  ]
 )
 
 Vote.create!(
@@ -136,7 +151,10 @@ activity5 = Activity.create!(
   date_1: Date.today + 5.days,
   date_2: Date.today + 7.days,
   date_3: Date.today + 9.days,
-  user: user5
+  user: user5,
+  photos: [
+    File.open(image_path.join('movie_night.png')),
+  ]
 )
 
 Vote.create!(
