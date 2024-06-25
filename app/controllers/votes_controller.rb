@@ -4,15 +4,15 @@ class VotesController < ApplicationController
 
   def create
     if current_user.votes.exists?(activity: @activity)
-      render json: { success: false, errors: ['You have already voted for this activity'] }, status: :unprocessable_entity
+      render json: { message: 'You have already voted for this activity' }, status: :unprocessable_entity
     else
       @vote = Vote.new(vote_params)
       @vote.activity = @activity
       @vote.user = current_user
       if @vote.save
-        render json: { success: true, message: 'Your vote was successfully submitted.' }
+        render json: { message: 'Your vote was successfully submitted.' }, status: :ok
       else
-        render json: { success: false, errors: @vote.errors.full_messages }, status: :unprocessable_entity
+        render json: { message: @vote.errors.full_messages.join(', ') }, status: :unprocessable_entity
       end
     end
   end
