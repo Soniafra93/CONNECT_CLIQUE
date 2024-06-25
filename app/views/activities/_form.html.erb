@@ -36,12 +36,14 @@
   </div>
 
   <div class="field">
-    <label class="form-label">Members</label>
-    <select id="members_select" class="form-control" data-action="change->members#toggleFriendSelection">
-      <option value="all">Public</option>
-      <option value="select">Friends</option>
+    <label for="members" class="form-label">Members</label>
+    <select id="members" class="form-control" data-action="change->members#toggleFriendSelection">
+      <option value="public">Public</option>
+      <option value="friends">Friends</option>
     </select>
   </div>
+
+  <%# <%= form.input :name, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
 
   <div class="field d-none" id="friends_list">
     <label class="form-label">Friends</label>

@@ -8,6 +8,7 @@ class Activity < ApplicationRecord
   has_many_attached :photos
 
   validates :name, :description, :address, :date_1, :date_2, :date_3, presence: true
+  validates :members, inclusion: { in: %w(friends public) }
 
   def determine_winning_date
     dates = [date_1, date_2, date_3].uniq.compact  # Ensure dates are distinct and remove nil values
