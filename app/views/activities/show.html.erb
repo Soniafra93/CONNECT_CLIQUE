@@ -1,7 +1,28 @@
 <div class="container mt-4" data-controller="toggle-form">
   <div class="show-activity-card">
     <h2 class="show-activity-title"><%= @activity.name %></h2>
-    <p class="show-activity-detail mb-4"><strong>Description:</strong> <%= @activity.description %></p>
+
+    <!-- Display photos -->
+    <div id="carouselExample" class="carousel slide carousel-container" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @activity.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= cl_image_tag photo.key, height: 200, width: 300, crop: :pad, class: 'd-block w-100 modern-photo' %>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Description -->
+    <p class="show-activity-detail mb-4"><%= @activity.description %></p>
 
     <% if @activity.voting_closed %>
       <p class="show-activity-detail">
@@ -15,25 +36,6 @@
         </p>
       <% end %>
     <% end %>
-
-    <!-- Display photos -->
-    <div id="carouselExample" class="carousel slide carousel-container" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% @activity.photos.each_with_index do |photo, index| %>
-          <div class="carousel-item <%= 'active' if index == 0 %>">
-            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :pad, class: 'd-block w-100' %>
-          </div>
-        <% end %>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
 
     <!-- Edit and Vote links -->
     <div class="btn-container">
@@ -77,6 +79,19 @@
        data-controller="map"
        data-map-markers-value="<%= @markers.to_json %>"
        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+  <!-- Attendees Avatars -->
+  <div class="attendees-container mt-4">
+    <h3 class="show-activity-title">Attendees</h3>
+    <div class="avatars">
+      <% @attendees.each do |attendance| %>
+        <div class="avatar">
+          <%= image_tag attendance.user.avatar_url, alt: attendance.user.name, class: 'avatar-image' %>
+          <p class="avatar-name"><%= attendance.user.name %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <script>

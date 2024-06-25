@@ -17,6 +17,7 @@ class ActivitiesController < ApplicationController
     }]
 
     @vote = Vote.new
+    @attendees = @activity.attendances.includes(:user)
     authorize(@activity)
   end
 
