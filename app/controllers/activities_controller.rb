@@ -64,10 +64,13 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    authorize(@activity)
+    authorize @activity
 
-    @activity.destroy
-    redirect_to activities_url, status: :see_other, notice: 'Activity was successfully destroyed.'
+    if @activity.destroy
+      redirect_to activities_path, notice: 'Activity was successfully deleted.'
+    else
+      redirect_to @activity, alert: 'Failed to delete activity.'
+    end
   end
 
   def close_voting

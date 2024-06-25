@@ -1,6 +1,20 @@
 <div class="container mt-4" data-controller="toggle-form">
   <div class="show-activity-card">
-    <h2 class="show-activity-title"><%= @activity.name %></h2>
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="show-activity-title"><%= @activity.name %></h2>
+      <div class="dropdown">
+        <img src="<%= asset_path('three_dots.png') %>" alt="Options" class="three-dots-icon" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <% if policy(@activity).edit? %>
+            <li><%= link_to 'Edit', edit_activity_path(@activity), class: 'dropdown-item' %></li>
+          <% end %>
+          <li><%= link_to 'Back', activities_path, class: 'dropdown-item' %></li>
+          <% if policy(@activity).destroy? %>
+            <li><%= link_to 'Delete', activity_path(@activity), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
     <!-- Display photos -->
     <div id="carouselExample" class="carousel slide carousel-container" data-bs-ride="carousel">
@@ -41,14 +55,10 @@
     <div class="btn-container">
       <% if current_user == @activity.user && !@activity.voting_closed %>
         <% if !current_user.votes.exists?(activity: @activity) %>
-          <button data-action="click->toggle-form#fire" class="btn2">Vote</button>
+          <button data-action="click->toggle-form#fire" class="btn2 vote-button">Vote</button>
         <% end %>
         <%= button_to 'Close Vote', close_voting_activity_path(@activity), method: :post, class: 'btn2' %>
       <% end %>
-      <% if policy(@activity).edit? %>
-        <%= link_to 'Edit', edit_activity_path(@activity), class: 'btn2' %>
-      <% end %>
-      <%= link_to 'Back', activities_path, class: 'btn2' %>
     </div>
 
     <!-- Voting options (hidden by default) -->
@@ -108,27 +118,14 @@ document.addEventListener('turbo:load', () => {
         body: new FormData(this),
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
-          'Accept': 'application/json'
-        },
-        credentials: 'same-origin'
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          messageDisplay.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-          const togglableElement = document.querySelector('[data-toggle-form-target="togglableElement"]');
-          if (togglableElement) {
-            togglableElement.classList.add('d-none');
-          }
-        } else {
-          messageDisplay.innerHTML = `<div class="alert alert-danger">${data.errors.join(', ')}</div>`;
+          'Turbo-Frame': 'message-display'
         }
       })
-      .catch(error => {
-        console.error('Error:', error);
-        messageDisplay.innerHTML = '<div class="alert alert-danger">An error occurred while submitting the form. Please try again.</div>';
-      });
+      .then(response => response.text())
+      .then(data => {
+        messageDisplay.innerHTML = data;
+      })
+      .catch(error => console.error('Error:', error));
     });
   }
 });
