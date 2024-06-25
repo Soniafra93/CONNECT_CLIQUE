@@ -1,18 +1,29 @@
+<!-- app/views/activities/index.html.erb -->
+
 <div class="container activities-container">
-  <h1>Activities</h1>
+  <h1>All Activities</h1>
 
   <!-- Search form -->
   <div class="search-form mb-4">
-    <%= form_with url: activities_path, method: :get, local: true do |form| %>
+    <%= form_with url: activities_path, method: :get, local: true, html: { class: "form-inline" } do |form| %>
       <%= form.text_field :query, placeholder: "Search activities...", class: "form-control" %>
     <% end %>
   </div>
 
-  <div class="cards-grid">
-    <% @activities.each do |activity| %>
-      <%= link_to activity_path(activity), class: "text-decoration-none" do %>
-        <%= render partial: 'partials/cards', locals: { activity: activity } %>
+  <!-- Flash messages -->
+  <% flash.each do |key, message| %>
+    <div class="flash <%= key %>">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <% if @activities.present? %>
+    <div class="cards-grid">
+      <% @activities.each do |activity| %>
+        <%= link_to activity_path(activity), class: "text-decoration-none" do %>
+          <%= render partial: 'partials/cards', locals: { activity: activity } %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
