@@ -16,6 +16,7 @@ class ActivitiesController < ApplicationController
       info_window_html: render_to_string(partial: "info_window", locals: { activity: @activity })
     }]
 
+    @vote = Vote.new
     authorize(@activity)
   end
 
@@ -31,7 +32,6 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @activity.user = current_user
-    
     # Split datetime strings into separate date and time attributes
     split_datetime_fields(@activity)
 
@@ -78,7 +78,7 @@ class ActivitiesController < ApplicationController
 
     # Set start_time and end_time if they are not already set
     if @activity.start_time.nil? || @activity.end_time.nil?
-      @activity.update(start_time: Time.now, end_time: Time.now + 2.hours)  # Example setting start and end times
+      @activity.update(start_time: Time.now, end_time: Time.now + 2.hours) # Example setting start and end times
     end
 
     # Redirect back to the activity show page

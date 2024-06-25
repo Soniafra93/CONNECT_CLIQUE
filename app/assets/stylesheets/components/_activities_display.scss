@@ -16,7 +16,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #5304BF; /* Primary color */
+  color: #5304bf; /* Primary color */
 }
 
 .show-activity-detail {
@@ -47,20 +47,10 @@
 }
 
 .btn-container {
-  margin-top: 20px;
-}
-
-.btn1 {
-  background-color: #5304BF;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn1:hover {
-  background-color: #AE62F8;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media (max-width: 767px) {
