@@ -5,7 +5,6 @@
   <div class="search-form mb-4">
     <%= form_with url: activities_path, method: :get, local: true do |form| %>
       <%= form.text_field :query, placeholder: "Search activities...", class: "form-control" %>
-      <%= form.submit "Search", class: "btn1 mt-2" %>
     <% end %>
   </div>
 
