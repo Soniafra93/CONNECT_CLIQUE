@@ -108,6 +108,8 @@
 document.addEventListener('turbo:load', () => {
   const form = document.getElementById('vote-form');
   const messageDisplay = document.getElementById('message-display');
+  const voteButton = document.querySelector('.vote-button');
+  const votingOptionsContainer = document.querySelector('[data-toggle-form-target="togglableElement"]');
 
   if (form) {
     form.addEventListener('submit', function(event) {
@@ -118,12 +120,18 @@ document.addEventListener('turbo:load', () => {
         body: new FormData(this),
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'Turbo-Frame': 'message-display'
+          'Accept': 'application/json'
         }
       })
-      .then(response => response.text())
+      .then(response => {
+        if (response.ok) {
+          voteButton.classList.add('d-none');
+          votingOptionsContainer.classList.add('d-none');
+        }
+        return response.json();
+      })
       .then(data => {
-        messageDisplay.innerHTML = data;
+        messageDisplay.innerHTML = data.message;
       })
       .catch(error => console.error('Error:', error));
     });
