@@ -10,7 +10,7 @@
           <% end %>
           <li><%= link_to 'Back', activities_path, class: 'dropdown-item' %></li>
           <% if policy(@activity).destroy? %>
-            <li><%= link_to 'Delete', activity_path(@activity), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Delete', activity_path(@activity), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
           <% end %>
         </ul>
       </div>
