@@ -15,6 +15,7 @@ class AttendancesController < ApplicationController
 
   def create
     @attendance.user = current_user
+    @attendance.activity = @activity
     authorize(@attendance)
 
     @attendance = current_user.attendances.new(attendance_params)
@@ -61,6 +62,6 @@ class AttendancesController < ApplicationController
   end
 
   def attendance_params
-    params.require(:attendance).permit(:activity_id, :selected_date)
+    params.require(:attendance).permit(:activity_id, :selected_date, :start_time, :end_time)
   end
 end

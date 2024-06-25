@@ -35,6 +35,12 @@
 
 .carousel-item img {
   border-radius: 12px;
+  object-fit: cover;
+}
+
+.modern-photo {
+  border: 2px solid #AE62F8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .map-container {
@@ -44,6 +50,34 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.attendees-container {
+  margin-top: 20px;
+}
+
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.avatar {
+  text-align: center;
+}
+
+.avatar-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #5304bf; /* Primary color */
+}
+
+.avatar-name {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  color: #666666;
 }
 
 .btn-container {
@@ -57,6 +91,7 @@
   .show-activity-card {
     padding: 15px;
   }
+}
 
   .show-activity-title {
     font-size: 1.2rem;
@@ -68,11 +103,5 @@
 
   .btn1 {
     width: 100%;
-    text-align: center;
-    padding: 10px 0;
+    text-align: center
   }
-
-  .map-container {
-    height: 250px; /* Adjust height for mobile devices */
-  }
-}
