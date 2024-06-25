@@ -15,7 +15,7 @@
 .show-activity-title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 30px; /* Increased margin-bottom to add more space */
   color: #5304bf; /* Primary color */
 }
 
@@ -30,7 +30,7 @@
 }
 
 .carousel-container {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Reduced margin-bottom back to default */
 }
 
 .carousel-item img {
@@ -82,16 +82,25 @@
 
 .btn-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center; /* Center align content */
   align-items: center;
+  flex-wrap: wrap; /* Allow wrapping for responsive design */
+}
+
+.vote-button {
+  margin: 0 auto; /* Center the vote button */
+}
+
+.three-dots-icon {
+  width: 24px; /* Adjust the size as needed */
+  height: 24px;
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
   .show-activity-card {
     padding: 15px;
   }
-}
 
   .show-activity-title {
     font-size: 1.2rem;
@@ -103,5 +112,7 @@
 
   .btn1 {
     width: 100%;
-    text-align: center
+    text-align: center;
   }
+}
+
