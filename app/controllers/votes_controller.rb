@@ -1,19 +1,19 @@
 class VotesController < ApplicationController
   before_action :set_activity
-  before_action :authorize_vote, only: [:new, :create]
-
-  def new
-    @vote = Vote.new
-  end
+  before_action :authorize_vote, only: [:create]
 
   def create
-    @vote = Vote.new(vote_params)
-    @vote.activity = @activity
-    @vote.user = current_user
-    if @vote.save
-      redirect_to activity_path(@activity), notice: 'Your vote was successfully submitted.'
+    if current_user.votes.exists?(activity: @activity)
+      render json: { success: false, errors: ['You have already voted for this activity'] }, status: :unprocessable_entity
     else
-      render :new, status: 422
+      @vote = Vote.new(vote_params)
+      @vote.activity = @activity
+      @vote.user = current_user
+      if @vote.save
+        render json: { success: true, message: 'Your vote was successfully submitted.' }
+      else
+        render json: { success: false, errors: @vote.errors.full_messages }, status: :unprocessable_entity
+      end
     end
   end
 
