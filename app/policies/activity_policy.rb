@@ -35,16 +35,26 @@ class ActivityPolicy < ApplicationPolicy
 
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
+
     def resolve
-      if record.members == "friends"
-        if user.mine_and_friend_user_ids.present?
-          scope.where( user: user.mine_and_friend_user_ids)
-        else
-          scope.where( user: user)
-        end
+      if user.mine_and_friend_user_ids.present?
+        scope.where("members = ? OR user_id IN (?)", "public", user.mine_and_friend_user_ids)
       else
-        scope.all
+        scope.where("members = ? OR user_id = ?", "public", user.id)
       end
     end
+
+
+    # def resolve
+    #   if scope.members == "friends"
+    #     if user.mine_and_friend_user_ids.present?
+    #       scope.where( user: user.mine_and_friend_user_ids)
+    #     else
+    #       scope.where( user: user)
+    #     end
+    #   else
+    #     scope.all
+    #   end
+    # end
   end
 end
