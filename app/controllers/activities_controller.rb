@@ -35,7 +35,6 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    raise
     @activity = Activity.new(activity_params)
     @activity.user = current_user
     # Split datetime strings into separate date and time attributes
@@ -101,7 +100,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, photos: [], friend_ids: [], members: ["public", "friends"] )
+    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, :members, photos: [], friend_ids: [] )
   end
 
   def split_datetime_fields(activity)
