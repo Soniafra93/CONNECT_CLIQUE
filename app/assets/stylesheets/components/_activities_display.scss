@@ -39,7 +39,7 @@
 }
 
 .modern-photo {
-  border: 2px solid #AE62F8;
+  border: 2px solid #ae62f8;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -116,3 +116,7 @@
   }
 }
 
+.votes-count {
+  font-weight: bold;
+  font-size: 1.1em;
+}
