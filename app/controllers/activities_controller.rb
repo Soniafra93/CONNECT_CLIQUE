@@ -46,6 +46,11 @@ class ActivitiesController < ApplicationController
       if params[:activity][:friend_ids].present?
         params[:activity][:friend_ids].each do |friend_id|
           @activity.attendances.create(user_id: friend_id)
+          Notification.create(
+            user_id: friend_id,
+            message: "You've been invited to vote for #{@activity.name}!",
+            read: false
+          )
         end
       end
       redirect_to @activity, notice: 'Activity was successfully created.'

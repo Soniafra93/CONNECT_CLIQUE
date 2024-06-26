@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
+  get 'notifications/mark_as_read'
   devise_for :users
 
   resources :activities do
