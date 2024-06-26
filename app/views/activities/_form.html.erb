@@ -35,15 +35,18 @@
     <%= form.text_field :date_3, as: :string, data: { controller: "datepicker" }, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <%# <div class="field">
     <label for="members" class="form-label">Members</label>
     <select id="members" class="form-control" data-action="change->members#toggleFriendSelection">
       <option value="public">Public</option>
       <option value="friends">Friends</option>
     </select>
-  </div>
+  </div> %>
 
-  <%# <%= form.input :name, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
+  <div class="field">
+    <%= form.label :members, class: 'form-label' %>
+    <%= form.collection_select :members, [["public", "Public"], ["friends", "Friends"]], :first, :last, {}, { class: 'form-control', data: { action: "change->members#toggleFriendSelection" } } %>
+  </div>
 
   <div class="field d-none" id="friends_list">
     <label class="form-label">Friends</label>

@@ -37,7 +37,6 @@ class ActivityPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       if record.members == "friends"
-        raise
         if user.mine_and_friend_user_ids.present?
           scope.where( user: user.mine_and_friend_user_ids)
         else

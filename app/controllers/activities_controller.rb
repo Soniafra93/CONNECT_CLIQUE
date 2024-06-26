@@ -100,7 +100,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, photos: [], friend_ids: [])
+    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, photos: [], friend_ids: [], members: ["public", "friends"] )
   end
 
   def split_datetime_fields(activity)
