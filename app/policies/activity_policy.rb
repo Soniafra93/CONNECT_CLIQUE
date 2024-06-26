@@ -44,17 +44,13 @@ class ActivityPolicy < ApplicationPolicy
       end
     end
 
-
+    # old version of the code, in case we need it once notifications are working
     # def resolve
-    #   if scope.members == "friends"
     #     if user.mine_and_friend_user_ids.present?
     #       scope.where( user: user.mine_and_friend_user_ids)
     #     else
     #       scope.where( user: user)
     #     end
-    #   else
-    #     scope.all
-    #   end
     # end
   end
 end
