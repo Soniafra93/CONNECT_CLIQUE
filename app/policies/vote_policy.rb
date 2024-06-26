@@ -4,6 +4,6 @@ class VotePolicy < ApplicationPolicy
   end
 
   def create?
-    new?
+    true # Allow any user to create a vote
   end
 end

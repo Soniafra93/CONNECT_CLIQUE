@@ -38,6 +38,12 @@
     <!-- Description -->
     <p class="show-activity-detail mb-4"><%= @activity.description %></p>
 
+    <!-- Number of votes -->
+    <p class="show-activity-detail">
+      <strong>Votes:</strong>
+      <span class="votes-count text-success"><%= @activity.votes.count %></span>
+    </p>
+
     <% if @activity.voting_closed %>
       <p class="show-activity-detail">
         <strong>Date of Activity:</strong>
@@ -53,11 +59,13 @@
 
     <!-- Edit and Vote links -->
     <div class="btn-container">
-      <% if current_user == @activity.user && !@activity.voting_closed %>
+      <% if !@activity.voting_closed %>
         <% if !current_user.votes.exists?(activity: @activity) %>
           <button data-action="click->toggle-form#fire" class="btn2 vote-button">Vote</button>
         <% end %>
-        <%= button_to 'Close Vote', close_voting_activity_path(@activity), method: :post, class: 'btn2' %>
+        <% if current_user == @activity.user %>
+          <%= button_to 'Close Vote', close_voting_activity_path(@activity), method: :post, class: 'btn2' %>
+        <% end %>
       <% end %>
     </div>
 
