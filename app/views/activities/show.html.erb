@@ -52,14 +52,16 @@
     <% end %>
 
     <!-- Edit and Vote links -->
-    <div class="btn-container">
-      <% if current_user == @activity.user && !@activity.voting_closed %>
-        <% if !current_user.votes.exists?(activity: @activity) %>
-          <button data-action="click->toggle-form#fire" class="btn2 vote-button">Vote</button>
+      <div class="btn-container">
+        <% if !@activity.voting_closed %>
+          <% if !current_user.votes.exists?(activity: @activity) %>
+            <button data-action="click->toggle-form#fire" class="btn2 vote-button">Vote</button>
+          <% end %>
+          <% if current_user == @activity.user %>
+            <%= button_to 'Close Vote', close_voting_activity_path(@activity), method: :post, class: 'btn2' %>
+          <% end %>
         <% end %>
-        <%= button_to 'Close Vote', close_voting_activity_path(@activity), method: :post, class: 'btn2' %>
-      <% end %>
-    </div>
+      </div>
 
     <!-- Voting options (hidden by default) -->
     <div data-toggle-form-target="togglableElement" class="d-none py-4 px-3 rounded">
