@@ -35,6 +35,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
+    raise
     @activity = Activity.new(activity_params)
     @activity.user = current_user
     # Split datetime strings into separate date and time attributes
