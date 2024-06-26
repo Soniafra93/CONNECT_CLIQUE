@@ -43,11 +43,11 @@ class ActivitiesController < ApplicationController
     authorize(@activity)
 
     if @activity.save
-      if params[:activity][:friend_ids].present?
-        params[:activity][:friend_ids].each do |friend_id|
-          @activity.attendances.create(user_id: friend_id)
-          Notification.create(
-            user_id: friend_id,
+      if current_user.friends.present?
+        current_user.friends.each do |friend|
+          #@activity.attendances.create(user_id: friend.attendee.id)
+          Notification.create!(
+            user_id: friend.attendee.id,
             message: "You've been invited to vote for #{@activity.name}!",
             read: false
           )
@@ -86,8 +86,8 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     authorize @activity, :close_voting?
 
-    @activity.update(voting_closed: true)
-    @activity.determine_winning_date
+    if @activity.update(voting_closed: true)
+    winning_date = @activity.determine_winning_date
 
     # Set start_time and end_time if they are not already set
     if @activity.start_time.nil? || @activity.end_time.nil?
@@ -95,10 +95,26 @@ class ActivitiesController < ApplicationController
     end
 
     # Redirect back to the activity show page
-    redirect_to @activity, notice: 'Voting has been closed.'
+    if winning_date
+      all_users = [@activity.user_id] + @activity.votes.includes(:user).pluck(:user_id).uniq
+      all_ids = all_users.uniq
+      all_ids.each do |user_id|
+        Notification.create(
+          user_id: user_id,
+          message: "The date that got the most votes for #{@activity.name} is #{@activity.winning_date}.",
+          read: false
+        )
+      end
+      redirect_to @activity, notice: 'Voting has been closed and the most voted date has been finalized.'
+    else
+      redirect_to @activity, alert: 'There was an error determining the winning date.'
+    end
+    else
+      redirect_to @activity, alert: 'There was an error closing the voting.'
+    end
   end
 
-  private
+private
 
   def set_activity
     @activity = Activity.find(params[:id])

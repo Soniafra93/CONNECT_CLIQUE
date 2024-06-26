@@ -1,14 +1,26 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
-  get 'notifications/mark_as_read'
   devise_for :users
 
+  get 'notifications/index'
+  get 'notifications/mark_as_read'
+
   resources :activities do
+    member do
+      post 'close_voting'
+    end
     resources :votes, only: [:create, :new]
-    post 'close_voting', on: :member
     resources :attendances, only: [:index, :create, :new, :edit, :show, :update, :destroy]
   end
+
   resources :friends, only: [:index, :create, :destroy, :show]
+
   root 'pages#home'
   get '/up', to: 'rails/health#show'
+
+
+  resources :notifications, only: [:index] do
+    member do
+      patch :mark_as_read
+    end
+  end
 end

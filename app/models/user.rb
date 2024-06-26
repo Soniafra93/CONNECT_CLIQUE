@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def mine_and_friend_user_ids
     Friend.where("user_id = :user OR attendee_id = :user", user: self).pluck(:user_id, :attendee_id).flatten.uniq
   end
+
+  def unread_notifications?
+    notifications.where(read: false).exists?
+  end
 end

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_unread_notifications
 
   include Pundit::Authorization
   # before_action :skip_pundit_for_devise, if: :devise_controller?
@@ -23,6 +24,14 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :nickname, :photo])
+  end
+
+  def set_unread_notifications
+    if user_signed_in?
+      @unread_notifications = current_user.unread_notifications?
+    else
+      @unread_notifications = false
+    end
   end
 
   private
