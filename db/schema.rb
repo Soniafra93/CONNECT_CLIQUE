@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_165039) do
     t.time "time_1"
     t.time "time_2"
     t.time "time_3"
+    t.string "members"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
