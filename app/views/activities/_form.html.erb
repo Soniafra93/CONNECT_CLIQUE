@@ -44,8 +44,7 @@
   </div> %>
 
   <div class="field">
-    <%= form.label :members, class: 'form-label' %>
-    <%= form.collection_select :members, [["public", "Public"], ["friends", "Friends"]], :first, :last, {}, { class: 'form-control', data: { action: "change->members#toggleFriendSelection" } } %>
+    <%= form.input :members, collection:["public", "friends"], class: 'form-control', data: { action: "change->members#toggleFriendSelection" } %>
   </div>
 
 
