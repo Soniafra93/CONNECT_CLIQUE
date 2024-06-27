@@ -12,6 +12,7 @@
 Friend.destroy_all
 Activity.destroy_all
 User.destroy_all
+Vote.destroy_all
 
 # Define image paths
 image_path = Rails.root.join('app', 'assets', 'activities_images')
