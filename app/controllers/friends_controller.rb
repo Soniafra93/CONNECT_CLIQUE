@@ -5,7 +5,7 @@ class FriendsController < ApplicationController
   after_action :verify_policy_scoped, only: [:index]
 
   def index
-    @friends = policy_scope(Friend).includes(:attendee).where.not(user:current_user)
+    @friends = policy_scope(Friend).includes(:attendee).where(user: current_user)
   end
 
   def create

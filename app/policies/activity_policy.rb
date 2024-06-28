@@ -1,56 +1,49 @@
 class ActivityPolicy < ApplicationPolicy
-  # NOTE: Up to Pundit v2.3.1, the inheritance was declared as
-  # `Scope < Scope` rather than `Scope < ApplicationPolicy::Scope`.
-  # In most cases the behavior will be identical, but if updating existing
-  # code, beware of possible changes to the ancestors:
-  # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
   def show?
-    return true
+    record.visible_to?(user)
   end
 
   def new?
-    return create?
+    create?
   end
 
   def create?
-    return true
+    true
   end
 
   def edit?
-    return update?
+    update?
   end
 
   def update?
-    return record.user == user
+    record.user == user
   end
 
   def destroy?
-    return record.user == user
+    record.user == user
   end
 
   def close_voting?
     record.user == user && !record.voting_closed?
   end
 
-
   class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-
     def resolve
       if user.mine_and_friend_user_ids.present?
-        scope.where("members = ? OR user_id IN (?)", "public", user.mine_and_friend_user_ids)
+        scope.left_joins(:attendances)
+             .where("activities.members = ? OR activities.user_id IN (?) OR attendances.user_id = ?",
+                    "public",
+                    user.mine_and_friend_user_ids,
+                    user.id)
+             .distinct
       else
-        scope.where("members = ? OR user_id = ?", "public", user.id)
+        scope.left_joins(:attendances)
+             .where("activities.members = ? OR activities.user_id = ? OR attendances.user_id = ?",
+                    "public",
+                    user.id,
+                    user.id)
+             .distinct
       end
     end
-
-    # old version of the code, in case we need it once notifications are working
-    # def resolve
-    #     if user.mine_and_friend_user_ids.present?
-    #       scope.where( user: user.mine_and_friend_user_ids)
-    #     else
-    #       scope.where( user: user)
-    #     end
-    # end
   end
 end

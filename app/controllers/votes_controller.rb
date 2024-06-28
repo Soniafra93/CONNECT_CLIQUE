@@ -3,10 +3,19 @@ class VotesController < ApplicationController
   before_action :authorize_vote, only: [:create]
 
   def create
-    # Remove the check for current user's votes
     @vote = Vote.new(vote_params)
     @vote.activity = @activity
     @vote.user = current_user
+
+    # Parse the selected_date
+    if params[:vote][:selected_date].present?
+      begin
+        @vote.selected_date = Date.parse(params[:vote][:selected_date])
+      rescue Date::Error
+        return render json: { message: 'Invalid date format' }, status: :unprocessable_entity
+      end
+    end
+
     if @vote.save
       render json: { message: 'Your vote was successfully submitted.' }, status: :ok
       Notification.create(
@@ -21,8 +30,17 @@ class VotesController < ApplicationController
 
   def vote
     @activity = Activity.find(params[:id])
+
+    # Parse the selected_date
+    if params[:vote][:selected_date].present?
+      begin
+        params[:vote][:selected_date] = Date.parse(params[:vote][:selected_date])
+      rescue Date::Error
+        return redirect_to @activity, alert: 'Invalid date format'
+      end
+    end
+
     if @activity.update(vote_params)
-      # Notify the creator about the vote
       Notification.create(
         user_id: @activity.user_id,
         message: "#{current_user.name} has voted for #{@activity.name}.",

@@ -11,17 +11,19 @@
         </div>
         <ul class="list-group list-group-flush">
           <% @friends.each do |friend| %>
-          <%if friend.attendee_id != current_user.id%>
             <% if policy(friend).show? %>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                <%= friend.attendee.try(:full_name) %>
-                <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove" do %>
-                  <%= image_tag 'remove.png', alt: 'Remove', style: 'width: 20px; height: 20px;' %>
+                <% if friend.user == current_user %>
+                  <%= friend.attendee.try(:full_name) %>
+                <% else %>
+                  <%= friend.user.try(:full_name) %>
+                <% end %>
+                <% if policy(friend).destroy? %>
+                  <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove" do %>
+                    <%= image_tag 'remove.png', alt: 'Remove', style: 'width: 20px; height: 20px;' %>
+                  <% end %>
                 <% end %>
               </li>
-            <% else %>
-              <li class="list-group-item text-muted">You are not authorized to view this friend.</li>
-            <% end %>
             <% end %>
           <% end %>
         </ul>
