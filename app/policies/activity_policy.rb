@@ -35,12 +35,22 @@ class ActivityPolicy < ApplicationPolicy
 
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
+
     def resolve
       if user.mine_and_friend_user_ids.present?
-        scope.where( user: user.mine_and_friend_user_ids)
+        scope.where("members = ? OR user_id IN (?)", "public", user.mine_and_friend_user_ids)
       else
-        scope.where( user: user)
+        scope.where("members = ? OR user_id = ?", "public", user.id)
       end
     end
+
+    # old version of the code, in case we need it once notifications are working
+    # def resolve
+    #     if user.mine_and_friend_user_ids.present?
+    #       scope.where( user: user.mine_and_friend_user_ids)
+    #     else
+    #       scope.where( user: user)
+    #     end
+    # end
   end
 end
