@@ -1,0 +1,11 @@
+<h1>Notifications</h1>
+<ul>
+  <% @notifications.each do |notification| %>
+    <li>
+      <%= notification.message %>
+      <% unless notification.read? %>
+        <%= link_to 'Mark as read', mark_as_read_notification_path(notification), method: :patch %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
