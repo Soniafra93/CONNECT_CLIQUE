@@ -100,15 +100,18 @@
        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
   <!-- Attendees Avatars -->
-  <div class="attendees-container mt-4">
-    <h3 class="show-activity-title">Attendees</h3>
-    <div class="avatars">
-      <% @attendees.each do |attendance| %>
-        <div class="avatar">
-          <%= image_tag attendance.user.avatar_url, alt: attendance.user.name, class: 'avatar-image' %>
-          <p class="avatar-name"><%= attendance.user.name %></p>
-        </div>
-      <% end %>
-    </div>
+<div class="attendees-container mt-4">
+  <h3 class="show-activity-title">Attendees</h3>
+  <div class="avatars">
+    <% @attendees.each do |attendance| %>
+      <div class="avatar">
+        <% if attendance.user.respond_to?(:avatar_url) && attendance.user.avatar_url.present? %>
+          <%= image_tag attendance.user.avatar_url, alt: "#{attendance.user.first_name} #{attendance.user.last_name}", class: 'avatar-image' %>
+        <% else %>
+          <%= image_tag "https://placehold.it/100x100", alt: "#{attendance.user.first_name} #{attendance.user.last_name}", class: 'avatar-image' %>
+        <% end %>
+        <p class="avatar-name"><%= "#{attendance.user.first_name} #{attendance.user.last_name}" %></p>
+      </div>
+    <% end %>
   </div>
 </div>

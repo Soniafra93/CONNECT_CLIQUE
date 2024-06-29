@@ -10,24 +10,22 @@ class Activity < ApplicationRecord
   validates :name, :description, :address, :date_1, :date_2, :date_3, presence: true
   validates :members, inclusion: { in: %w(friends public) }
 
+  scope :public_activities, -> { where(members: 'public') }
+  scope :friends_activities, ->(user) { where(members: 'friends', user: user.friends.pluck(:attendee_id)) }
+
   def determine_winning_date
-    dates = [date_1, date_2, date_3].uniq.compact  # Ensure dates are distinct and remove nil values
+    dates = [date_1, date_2, date_3].uniq.compact
     vote_counts = dates.map { |date| votes.where(selected_date: date).count }
 
     max_votes = vote_counts.max
     winning_dates = dates.select.with_index { |_, i| vote_counts[i] == max_votes }
 
-    if winning_dates.size == 1
-      self.update(winning_date: winning_dates.first)
-
-      # Add activity instances to the calendars of users who voted for the winning date
-      votes.where(selected_date: winning_dates.first).each do |vote|
-        Attendance.create(user: vote.user, activity: self, start_time: start_time, end_time: end_time)
-      end
+    if winning_dates.any?
+      winning_date = winning_dates.first
+      self.update(winning_date: winning_date)
+      winning_date
     else
-      # Handle tie case (if needed)
-      # For now, just update with the first winning date found
-      self.update(winning_date: winning_dates.first)
+      nil
     end
   end
 
@@ -37,5 +35,12 @@ class Activity < ApplicationRecord
       [date, votes.where(selected_date: date).count]
     end
     tally.max_by { |_, count| count }&.first
+  end
+
+  def visible_to?(user)
+    members == 'public' ||
+    user == self.user ||
+    user.friends.pluck(:attendee_id).include?(self.user_id) ||
+    user.attendances.exists?(activity: self)
   end
 end

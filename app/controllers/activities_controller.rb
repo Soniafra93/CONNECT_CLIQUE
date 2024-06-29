@@ -37,7 +37,6 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @activity.user = current_user
-    # Split datetime strings into separate date and time attributes
     split_datetime_fields(@activity)
 
     authorize(@activity)
@@ -45,7 +44,6 @@ class ActivitiesController < ApplicationController
     if @activity.save
       if current_user.friends.present?
         current_user.friends.each do |friend|
-          #@activity.attendances.create(user_id: friend.attendee.id)
           Notification.create!(
             user_id: friend.attendee.id,
             message: "You've been invited to vote for #{@activity.name}!",
@@ -61,8 +59,6 @@ class ActivitiesController < ApplicationController
 
   def update
     authorize(@activity)
-
-    # Split datetime strings into separate date and time attributes
     split_datetime_fields(@activity)
 
     if @activity.update(activity_params)
@@ -83,45 +79,54 @@ class ActivitiesController < ApplicationController
   end
 
   def close_voting
-    @activity = Activity.find(params[:id])
     authorize @activity, :close_voting?
 
     if @activity.update(voting_closed: true)
-    winning_date = @activity.determine_winning_date
+      winning_date = @activity.determine_winning_date
 
-    # Set start_time and end_time if they are not already set
-    if @activity.start_time.nil? || @activity.end_time.nil?
-      @activity.update(start_time: Time.now, end_time: Time.now + 2.hours) # Example setting start and end times
-    end
-
-    # Redirect back to the activity show page
-    if winning_date
-      all_users = [@activity.user_id] + @activity.votes.includes(:user).pluck(:user_id).uniq
-      all_ids = all_users.uniq
-      all_ids.each do |user_id|
-        Notification.create(
-          user_id: user_id,
-          message: "The date that got the most votes for #{@activity.name} is #{@activity.winning_date}.",
-          read: false
-        )
+      if @activity.start_time.nil? || @activity.end_time.nil?
+        @activity.update(start_time: Time.now, end_time: Time.now + 2.hours)
       end
-      redirect_to @activity, notice: 'Voting has been closed and the most voted date has been finalized.'
-    else
-      redirect_to @activity, alert: 'There was an error determining the winning date.'
-    end
+
+      if winning_date
+        # Include the activity creator and winning voters
+        winning_voters = [@activity.user_id] + @activity.votes.where(selected_date: winning_date).pluck(:user_id)
+        winning_voters.uniq.each do |user_id|
+          Attendance.create(
+            user_id: user_id,
+            activity: @activity,
+            start_time: @activity.start_time,
+            end_time: @activity.end_time
+          )
+        end
+
+        # Notify all voters about the result
+        all_voters = @activity.votes.pluck(:user_id).uniq
+        all_voters.each do |user_id|
+          Notification.create(
+            user_id: user_id,
+            message: "Voting for #{@activity.name} has closed. The winning date is #{winning_date}.",
+            read: false
+          )
+        end
+
+        redirect_to @activity, notice: 'Voting has been closed and the most voted date has been finalized.'
+      else
+        redirect_to @activity, alert: 'There was an error determining the winning date.'
+      end
     else
       redirect_to @activity, alert: 'There was an error closing the voting.'
     end
   end
 
-private
+  private
 
   def set_activity
     @activity = Activity.find(params[:id])
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, :members, photos: [], friend_ids: [] )
+    params.require(:activity).permit(:name, :description, :address, :date_1, :date_2, :date_3, :start_time, :end_time, :user_id, :members, photos: [], friend_ids: [])
   end
 
   def split_datetime_fields(activity)
