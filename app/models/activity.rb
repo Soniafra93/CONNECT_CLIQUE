@@ -40,7 +40,7 @@ class Activity < ApplicationRecord
   def visible_to?(user)
     members == 'public' ||
     user == self.user ||
-    user.friends.pluck(:attendee_id).include?(self.user_id) ||
+    user.friend_of?(self.user) ||
     user.attendances.exists?(activity: self)
   end
 end
