@@ -20,9 +20,9 @@ class ActivitiesController < ApplicationController
       info_window_html: render_to_string(partial: "info_window", locals: { activity: @activity })
     }]
 
+    authorize(@activity)
     @vote = Vote.new
     @attendees = @activity.attendances.includes(:user)
-    authorize(@activity)
   end
 
   def new
