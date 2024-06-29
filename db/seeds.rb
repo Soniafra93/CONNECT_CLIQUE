@@ -35,6 +35,7 @@ activity1 = Activity.create!(
   date_2: Date.today + 3.days,
   date_3: Date.today + 5.days,
   user: user1,
+  members: "friends",
   photos: [
     File.open(image_path.join('morning_jogging.png')),
   ]
@@ -63,6 +64,7 @@ activity2 = Activity.create!(
   date_2: Date.today + 4.days,
   date_3: Date.today + 6.days,
   user: user2,
+  members: "friends",
   photos: [
     File.open(image_path.join('yoga_class.png')),
   ]
@@ -93,6 +95,7 @@ activity3 = Activity.create!(
   date_2: Date.today + 5.days,
   date_3: Date.today + 7.days,
   user: user3,
+  members: "friends",
   photos: [
     File.open(image_path.join('basketball_game.png')),
   ]
@@ -123,6 +126,7 @@ activity4 = Activity.create!(
   date_2: Date.today + 6.days,
   date_3: Date.today + 8.days,
   user: user4,
+  members: "friends",
   photos: [
     File.open(image_path.join('art_class.png')),
   ]
@@ -153,6 +157,7 @@ activity5 = Activity.create!(
   date_2: Date.today + 7.days,
   date_3: Date.today + 9.days,
   user: user5,
+  members: "friends",
   photos: [
     File.open(image_path.join('movie_night.png')),
   ]
