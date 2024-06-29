@@ -14,6 +14,13 @@ class FriendsController < ApplicationController
       friend = current_user.friends.new(attendee_id: @attendee.id)
       authorize friend
       if friend.save
+        current_user.friends.each do |friend|
+          Notification.create!(
+            user_id: friend.attendee.id,
+            message: "You've been added as a friend by #{current_user.first_name}!",
+            read: false
+          )
+        end
         redirect_to friends_path, notice: "Friend added successfully."
       else
         redirect_to friends_path, alert: "Unable to add friend."

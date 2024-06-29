@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :attendances, only: [:index, :create, :new, :edit, :show, :update, :destroy]
   end
 
-  resources :friends, only: [:index, :create, :destroy, :show]
+  resources :friends, only: [:index, :create, :destroy]
 
   root 'pages#home'
   get '/up', to: 'rails/health#show'
