@@ -1,13 +1,13 @@
 <div class="container my-4">
   <div class="row">
     <div class="col-12 mb-4">
-      <h1 class="text-center">Friends</h1>
+      <h1 class="text-center">Friends List</h1>
     </div>
 
     <div class="col-12">
       <div class="card shadow-sm mb-4">
-        <div class="card-header" style="background-color: #AE62F8; color: white;">
-          Your Friends
+        <div class="card-header" style="background-color: #00123F; color: white;">
+          My Friends
         </div>
         <ul class="list-group list-group-flush">
           <% @friends.each do |friend| %>
@@ -31,15 +31,15 @@
     <div class="col-12">
       <div class="card shadow-sm">
         <div class="card-body">
-          <h2 class="card-title text-center mb-4" style="color: #5304BF;">Add Friend</h2>
+          <h2 class="card-title text-center mb-4" style="color: #00123F;">Add Friend</h2>
           <%= form_with model: Friend.new, url: friends_path, local: true do |form| %>
             <% if policy(Friend.new).create? %>
               <div class="form-group mb-3">
-                <%= form.label :attendee_id, "Friend Full Name", class: "form-label", style: "color: #C6C4B7;" %>
-                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, class: "form-select", input_html: {data: {controller: "tom-select"}} %>
+                <%= form.label :attendee_id, "Full Name", class: "form-label", style: "color: #292929;" %>
+                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, class: "form-select", style: "color: #292929;", input_html: {data: {controller: "tom-select"}} %>
               </div>
               <div class="d-grid">
-                <%= form.submit "Add Friend", class: "btn btn-primary", style: "background-color: #AE62F8; border-color: #AE62F8;" %>
+                <%= form.submit "Add Friend", class: "btn btn-primary", style: "background-color: #00123F; border-color: #00123F;" %>
               </div>
             <% else %>
               <p class="text-center text-muted">You are not authorized to add friends.</p>
