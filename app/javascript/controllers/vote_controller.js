@@ -1,48 +1,24 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="vote"
 export default class extends Controller {
-  static targets = [
-    "form",
-    "messageDisplay",
-    "voteButton",
-    // "votingOptionsContainer",
-  ];
-  connect() {
-    console.log("Hello, Stimulus!", this.element);
-  }
-  submit(event) {
+  static targets = ["voteButton", "form", "togglableElement", "messageDisplay"]
+
+  fire(event) {
     event.preventDefault();
-    const form = this.formTarget;
-    const messageDisplay = this.messageDisplayTarget;
-    const voteButton = this.voteButtonTarget;
-    // const votingOptionsContainer = this.votingOptionsContainerTarget;
+    this.togglableElementTarget.classList.toggle("d-none");
+  }
 
-    voteButton.disabled = true;
+  handleSuccess(event) {
+    const [data, status, xhr] = event.detail;
+    this.togglableElementTarget.classList.add("d-none");
+    this.voteButtonTarget.classList.add("d-none");
+    this.messageDisplayTarget.innerHTML = "Thank you for voting!";
+    this.messageDisplayTarget.classList.remove("d-none");
+  }
 
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        Accept: "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          voteButton.classList.add("d-none");
-          // votingOptionsContainer.classList.add("d-none");
-          console.log("Voting successful");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        messageDisplay.innerHTML = data.message;
-        voteButton.disabled = false;
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        voteButton.disabled = false;
-      });
+  handleError(event) {
+    const [data, status, xhr] = event.detail;
+    this.messageDisplayTarget.innerHTML = "There was an error submitting your vote. Please try again.";
+    this.messageDisplayTarget.classList.remove("d-none");
   }
 }

@@ -1,0 +1,9 @@
+<% if @vote.persisted? %>
+  document.querySelector("[data-vote-target='togglableElement']").classList.add("d-none");
+  document.querySelector("[data-vote-target='voteButton']").classList.add("d-none");
+  document.querySelector("[data-vote-target='messageDisplay']").innerHTML = "Thank you for voting!";
+  document.querySelector("[data-vote-target='messageDisplay']").classList.remove("d-none");
+<% else %>
+  document.querySelector("[data-vote-target='messageDisplay']").innerHTML = "There was an error submitting your vote. Please try again.";
+  document.querySelector("[data-vote-target='messageDisplay']").classList.remove("d-none");
+<% end %>
