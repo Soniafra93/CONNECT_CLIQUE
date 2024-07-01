@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'notifications/index'
   get 'notifications/mark_as_read'
 
+  post 'friends', to: 'friends#new_friend', as: 'new_friend'
   resources :activities do
     member do
       post 'close_voting'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :friends, only: [:index, :create, :destroy]
+
+
 
   root 'pages#home'
   get '/up', to: 'rails/health#show'
