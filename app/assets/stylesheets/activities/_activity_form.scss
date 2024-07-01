@@ -15,7 +15,7 @@
       margin-bottom: 8px;
       font-weight: 600;
       font-size: 14px;
-      color: #333;
+      color:#83899E;
     }
 
     .form-control {
@@ -25,7 +25,7 @@
       border-radius: 6px;
       box-sizing: border-box;
       font-size: 14px;
-      color: #555;
+      color: #83899E;
       transition: border-color 0.3s;
 
       &:focus {
@@ -42,19 +42,19 @@
       padding: 12px 25px;
       border: none;
       border-radius: 6px;
-      background-color: #007bff;
+      background-color: #00123F;
       color: white;
       font-size: 16px;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
 
       &:hover {
-        background-color: #0056b3;
+        background-color: #5395DB;
         transform: translateY(-2px);
       }
 
       &:active {
-        background-color: #004080;
+        background-color: #5395DB;
         transform: translateY(0);
       }
     }
@@ -72,7 +72,7 @@
     .form-check-label {
       margin-left: 8px;
       font-weight: 500;
-      color: #555;
+      color: #83899E;
     }
 
     .form-check-input {
@@ -87,8 +87,8 @@
       }
 
       &:checked {
-        background-color: #007bff;
-        border-color: #007bff;
+        background-color: #00123F;
+        border-color: #00123F;
       }
     }
   }
@@ -128,7 +128,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
-    color: #555;
+    color: #83899E;
     transition: border-color 0.3s;
 
     &:focus {
@@ -142,19 +142,19 @@
     padding: 10px 20px;
     border: none;
     border-radius: 6px;
-    background-color: #007bff;
+    background-color: #5395DB;
     color: white;
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #5395DB;
       transform: translateY(-2px);
     }
 
     &:active {
-      background-color: #004080;
+      background-color: #5395DB;
       transform: translateY(0);
     }
   }

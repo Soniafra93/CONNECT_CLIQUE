@@ -1,6 +1,7 @@
 .navbar {
-  background-color: #ffffff;
+  background-color: #00123F !important;
   border-bottom: 1px solid #e0e0e0;
+
 
   .navbar-brand {
     display: flex;
@@ -12,59 +13,55 @@
 
       .connect {
         font-family: 'YourPrimaryFont', sans-serif;
-        color: #5304BF;
+        color: #ffffff;
       }
 
       .clique {
         font-family: 'YourItalicFont', sans-serif;
         font-style: italic;
-        color: #AE62F8;
+        color: #ffffff;
       }
     }
   }
 
   .nav-link {
-    color: #333333;
+    color: #ffffff;
     transition: color 0.2s;
-
-    &:hover {
-      color: #5304BF;
-    }
   }
 
   .dropdown-menu {
     background-color: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid #00123F;
     border-radius: 0.25rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
     .dropdown-item {
-      color: #333333;
+      color: #00123F;
 
       &:hover {
         background-color: #f8f9fa;
-        color: #5304BF;
+        color: #00123F;
       }
     }
   }
 
   .btn-outline-primary {
-    color: #5304BF;
-    border-color: #5304BF;
+    color: #00123F;
+    border-color: #00123F;
 
     &:hover {
-      background-color: #5304BF;
+      background-color: #5395DB;
       color: #ffffff;
     }
   }
 
   .btn-primary {
-    background-color: #5304BF;
-    border-color: #5304BF;
+    background-color: #00123F;
+    border-color: #00123F;
 
     &:hover {
-      background-color: #5304BF;
-      border-color: #5304BF;
+      background-color: #5395DB;
+      border-color: #5395DB;
     }
   }
 }

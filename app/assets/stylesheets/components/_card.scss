@@ -6,15 +6,15 @@
   margin: 0 auto;
   padding: 20px;
 }
-
 .calendar-container {
   width: 100%;
   margin-bottom: 30px;
 }
 
 .cards-container {
-  width: 100%;
-  padding-bottom: 60px; /* This adds space below the last card */
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 60px;
 }
 
 .cards-grid {
@@ -25,21 +25,21 @@
 
 .custom-event-card {
   width: 100%;
-  height: 110px; /* Adjust height to fit better on iPhone 14 Pro Max */
+  height: 110px;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px #00123F;
   overflow: hidden;
   display: flex;
   transition: all 0.3s ease;
 }
 
 .custom-event-card:hover .custom-event-card__title {
-  color: #5304bf;
+  color: #00123F;
 }
 
 .custom-event-card:hover .custom-event-card__description {
-  color: #ae62f8;
+  color: #83899E;
 }
 
 .custom-event-card__content {
@@ -52,10 +52,10 @@
 }
 
 .custom-event-card__title {
-  font-size: 0.9rem; /* Adjust font size */
+  font-size: 0.9rem;
   font-weight: bold;
   margin-bottom: 4px;
-  color: #333;
+  color: #00123F;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -63,7 +63,7 @@
 
 .custom-event-card__description {
   font-size: 0.75rem; /* Adjust font size */
-  color: #666;
+  color: #83899E;
   margin-bottom: 8px;
   line-height: 1.4;
   overflow: hidden;
@@ -75,7 +75,7 @@
 
 .custom-event-card__datetime {
   font-size: 0.7rem; /* Adjust font size */
-  color: #888;
+  color: #5395DB;
   display: flex;
   align-items: center;
 }
