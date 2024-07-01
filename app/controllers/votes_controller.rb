@@ -17,38 +17,28 @@ class VotesController < ApplicationController
     end
 
     if @vote.save
-      render json: { message: 'Your vote was successfully submitted.' }, status: :ok
-      Notification.create(
-        user_id: @activity.user_id,
-        message: "#{current_user.first_name} has voted for #{@activity.name}.",
-        read: false
-      )
-    else
-      render json: { message: @vote.errors.full_messages.join(', ') }, status: :unprocessable_entity
-    end
-  end
-
-  def vote
-    @activity = Activity.find(params[:id])
-
-    # Parse the selected_date
-    if params[:vote][:selected_date].present?
-      begin
-        params[:vote][:selected_date] = Date.parse(params[:vote][:selected_date])
-      rescue Date::Error
-        return redirect_to @activity, alert: 'Invalid date format'
+      respond_to do |format|
+        format.json do
+          render json: { message: 'Your vote was successfully submitted.' }, status: :ok
+        end
+        format.html do
+          Notification.create(
+            user_id: @activity.user_id,
+            message: "#{current_user.first_name} has voted for #{@activity.name}.",
+            read: false
+          )
+          redirect_to @activity, notice: 'Your vote was successfully submitted.'
+        end
       end
-    end
-
-    if @activity.update(vote_params)
-      Notification.create(
-        user_id: @activity.user_id,
-        message: "#{current_user.name} has voted for #{@activity.name}.",
-        read: false
-      )
-      redirect_to @activity, notice: 'Your vote was successfully submitted.'
     else
-      redirect_to @activity, alert: 'There was an error submitting your vote.'
+      respond_to do |format|
+        format.json do
+          render json: { message: @vote.errors.full_messages.join(', ') }, status: :unprocessable_entity
+        end
+        format.html do
+          redirect_to @activity, alert: 'There was an error submitting your vote.'
+        end
+      end
     end
   end
 
