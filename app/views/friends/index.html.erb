@@ -34,7 +34,7 @@
       <div class="card shadow-sm">
         <div class="card-body">
           <h2 class="card-title text-center mb-4" style="color: #5304BF;">Add Friend</h2>
-          <%= form_with model: Friend.new, url: friends_path, local: true do |form| %>
+          <%= form_with model: Friend.new, url: friends_create_path, local: true do |form| %>
             <% if policy(Friend.new).create? %>
               <div class="form-group mb-3">
                 <%= form.label :attendee_id, "Friend Full Name", class: "form-label", style: "color: #C6C4B7;" %>

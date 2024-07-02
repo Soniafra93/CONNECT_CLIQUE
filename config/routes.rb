@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'notifications/index'
   get 'notifications/mark_as_read'
 
-  post 'friends', to: 'friends#new_friend', as: 'new_friend'
+
   resources :activities do
     member do
       post 'close_voting'
@@ -13,7 +13,10 @@ Rails.application.routes.draw do
     resources :attendances, only: [:index, :create, :new, :edit, :show, :update, :destroy]
   end
 
-  resources :friends, only: [:index, :create, :destroy]
+  post 'friends/new_friend', to: 'friends#new_friend', as: 'new_friend'
+  post 'friends/create', to: 'friends#create'
+  resources :friends, only: [:index, :destroy]
+
 
 
 

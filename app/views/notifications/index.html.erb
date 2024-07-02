@@ -7,7 +7,6 @@
         <%= link_to 'Mark as read', mark_as_read_notification_path(notification), method: :patch %>
         <%# <% if notification.friend_request? %>
           <%= link_to 'Add friend back', new_friend_path(attendee_id: notification.sender_id), data: {turbo_method: :post} %>
-          <%=" hello" %>
         <%# <% end %>
       <% end %>
     </li>
