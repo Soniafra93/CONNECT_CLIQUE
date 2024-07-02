@@ -9,30 +9,30 @@
         <div class="card-header" style="background-color: #00123F; color: white;">
           My Friends
         </div>
-                <ul class="list-group list-group-flush">
-            <% @friends.each do |friend| %>
-              <% if policy(friend).show? %>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <div class="d-flex align-items-center">
-                    <% user = friend.user == current_user ? friend.attendee : friend.user %>
-                    <div class="friends-avatar me-2">
-                      <% if user.photo.attached? %>
-                        <%= cl_image_tag user.photo.key, class: 'avatar-image friends-avatar', title: user.full_name %>
-                      <% else %>
-                        <%= image_tag "default-avatar.avif", class: 'avatar-image friends-avatar', title: user.full_name %>
-                      <% end %>
-                    </div>
-                    <%= user.try(:full_name) %>
-                  </div>
-                  <% if policy(friend).destroy? %>
-                    <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove" do %>
-                      <%= image_tag 'remove.png', alt: 'Remove', style: 'width: 20px; height: 20px;' %>
+        <ul class="list-group list-group-flush">
+          <% @friends.each do |friend| %>
+            <% if policy(friend).show? %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <% user = friend.user == current_user ? friend.attendee : friend.user %>
+                  <div class="friends-avatar me-2">
+                    <% if user.photo.attached? %>
+                      <%= cl_image_tag user.photo.key, class: 'avatar-image friends-avatar', title: user.full_name %>
+                    <% else %>
+                      <%= image_tag "default-avatar.avif", class: 'avatar-image friends-avatar', title: user.full_name %>
                     <% end %>
+                  </div>
+                  <%= user.try(:full_name) %>
+                </div>
+                <% if policy(friend).destroy? %>
+                  <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove" do %>
+                    <%= image_tag 'remove.png', alt: 'Remove', style: 'width: 20px; height: 20px;' %>
                   <% end %>
-                </li>
-              <% end %>
+                <% end %>
+              </li>
             <% end %>
-          </ul>
+          <% end %>
+        </ul>
       </div>
     </div>
 
