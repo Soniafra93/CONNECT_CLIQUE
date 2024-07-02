@@ -1,31 +1,49 @@
+<!-- app/views/shared/_navbar.html.erb -->
 <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
   <div class="container d-flex justify-content-between align-items-center">
-    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
-      <%= image_tag "logo_big.png", alt: "Logo", width: "30", height: "30", class: "d-inline-block align-text-top me-2" %>
-      <span class="ms-2 app-name">
-        <span class="connect">Connect</span><span class="clique">Clique</span>
-      </span>
-    <% end %>
-    <div class="d-flex justify-content-end align-items-center">
-      <% if user_signed_in? %>
-        <div class="dropdown">
-          <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
-            <% else %>
-              <%= image_tag "default-avatar.avif", alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
-            <% end %>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm">
-            <li><%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
-          </ul>
-        </div>
-      <% else %>
-        <div class="d-flex">
-          <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-primary me-2" %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
-        </div>
+    <% if user_signed_in? && current_page?(my_profile_path) %>
+      <div class="d-flex align-items-center">
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
+        <% else %>
+          <%= image_tag "default-avatar.avif", alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
+        <% end %>
+        <span class="personalised_nav ms-2">
+          Hi <span style="font-size: 1.5em;">👋</span> <strong><%= current_user.full_name %></strong>
+        </span>
+      </div>
+    <% else %>
+      <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+        <%= image_tag "logo_big.png", alt: "Logo", width: "30", height: "30", class: "d-inline-block align-text-top me-2" %>
+        <span class="ms-2 app-name">
+          <span class="connect">Connect</span><span class="clique">Clique</span>
+        </span>
       <% end %>
-    </div>
+    <% end %>
+
+    <% unless user_signed_in? && current_page?(my_profile_path) %>
+      <div class="d-flex justify-content-end align-items-center">
+        <% if user_signed_in? %>
+          <div class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key, alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
+              <% else %>
+                <%= image_tag "default-avatar.avif", alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
+              <% end %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm">
+              <li><%= link_to "My Profile", my_profile_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+            </ul>
+          </div>
+        <% else %>
+          <div class="d-flex">
+            <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-primary me-2" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </nav>

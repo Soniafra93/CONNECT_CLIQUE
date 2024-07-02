@@ -1,0 +1,18 @@
+<div class="calendar-container">
+  <%= month_calendar(events: @activities, start_attribute: :start_time, end_attribute: :end_time) do |date, activities| %>
+    <%= date %>
+    <% activities.each do |activity| %>
+      <p><%= activity.name %> - <%= activity.start_time&.strftime("%H:%M") %> to <%= activity.end_time&.strftime("%H:%M") %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="cards-container">
+  <div class="cards-grid">
+    <% @activities.first(4).each do |activity| %>
+      <%= link_to activity_path(activity), class: "text-decoration-none" do %>
+        <%= render 'partials/cards', activity: activity %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
