@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'notifications/index'
   get 'notifications/mark_as_read'
+  get 'myprofile', to: 'pages#myprofile', as: 'my_profile'
 
   resources :activities do
     member do
