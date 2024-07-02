@@ -74,6 +74,8 @@ class FriendsController < ApplicationController
   private
 
   def set_users
-    @users = User.where.not(id: current_user.id)
+    friend_ids = current_user.friends.pluck(:attendee_id)
+    @users = User.where.not(id: current_user.id).where.not(id: friend_ids)
   end
 end
+

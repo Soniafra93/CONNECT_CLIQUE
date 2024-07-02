@@ -15,7 +15,7 @@
 
 .custom-calendar-title {
   background-color: whitesmoke;
-  color: black;
+  color: #00123F;
   border: none;
   padding: 5px 10px;
   font-weight: bold;
@@ -31,7 +31,7 @@
 .chevron-left,
 .chevron-right {
   font-size: 1.5rem;
-  color: #333;
+  color: #83899E !important;
   text-decoration: none;
 }
 
@@ -42,7 +42,7 @@
 
 .table th,
 .table td {
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff !important;
   padding: 8px;
   text-align: left;
 }
@@ -55,6 +55,7 @@
 
 .table th {
   background-color: white;
+  color: #83899E;
 }
 
 .bg-success {
@@ -70,7 +71,7 @@
 .event-dot {
   width: 8px;
   height: 8px;
-  background-color: #5304bf;
+  background-color: #5395db;
   border-radius: 50%;
   position: absolute;
   bottom: 5px;
@@ -80,7 +81,7 @@
 }
 
 .event-dot-link:hover .event-dot {
-  background-color: #5304bf;
+  background-color: #00123F ;
 }
 
 .event-dot-link {
@@ -150,6 +151,9 @@
     }
     .prev-month {
       background: white !important;
+    }
+    .next-month {
+      background-color: white !important;
     }
   }
 
