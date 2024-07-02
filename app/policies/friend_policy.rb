@@ -7,6 +7,10 @@ class FriendPolicy < ApplicationPolicy
     true
   end
 
+  def new_friend?
+    true
+  end
+
   def destroy?
     record.user == user
   end
