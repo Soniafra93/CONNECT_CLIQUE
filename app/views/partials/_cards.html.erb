@@ -1,15 +1,13 @@
 <div class="custom-event-card">
+  <div class="custom-event-card__date-circle">
+    <div class="date-content">
+      <div class="month"><%= activity.date_1&.strftime("%b") %></div>
+      <div class="day"><%= activity.date_1&.strftime("%d") %></div>
+    </div>
+  </div>
   <div class="custom-event-card__content">
     <h3 class="custom-event-card__title"><%= activity.name %></h3>
     <p class="custom-event-card__description"><%= truncate(activity.description, length: 100) %></p>
-    <div class="custom-event-card__datetime">
-      <i class="bi bi-calendar3"></i>
-      <%= activity.date_1&.strftime("%B %d, %Y") %>
-      <% if activity.start_time.present? %>
-        <i class="bi bi-clock ml-2"></i>
-        <%= activity.start_time.strftime("%I:%M %p") %>
-      <% end %>
-    </div>
   </div>
   <div class="custom-event-card__image-container">
     <% if activity.respond_to?(:photos) && activity.photos.attached? %>
