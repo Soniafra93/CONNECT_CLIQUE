@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #26355d !important; /* Updated background color */
+  background-color: #00123F !important;
   border-bottom: 1px solid #e0e0e0;
 
   .navbar-brand {
@@ -14,12 +14,12 @@
       color: #ffffff;
 
       .connect {
-        font-family: "YourPrimaryFont", sans-serif;
+        font-family: 'YourPrimaryFont', sans-serif;
         color: #ffffff;
       }
 
       .clique {
-        font-family: "YourItalicFont", sans-serif;
+        font-family: 'YourItalicFont', sans-serif;
         font-style: italic;
         color: #ffffff;
       }
@@ -40,37 +40,37 @@
     top: 100%; /* Position it right below the dropdown toggle */
     left: 0; /* Align it to the left edge of the dropdown toggle */
     background-color: #ffffff;
-    border: 1px solid #00123f;
+    border: 1px solid #00123F;
     border-radius: 0.25rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
     .dropdown-item {
-      color: #00123f;
+      color: #00123F;
 
       &:hover {
         background-color: #f8f9fa;
-        color: #00123f;
+        color: #00123F;
       }
     }
   }
 
   .btn-outline-primary {
-    color: #00123f;
-    border-color: #00123f;
+    color: #00123F;
+    border-color: #00123F;
 
     &:hover {
-      background-color: #5395db;
+      background-color: #5395DB;
       color: #ffffff;
     }
   }
 
   .btn-primary {
-    background-color: #00123f;
-    border-color: #00123f;
+    background-color: #00123F;
+    border-color: #00123F;
 
     &:hover {
-      background-color: #5395db;
-      border-color: #5395db;
+      background-color: #5395DB;
+      border-color: #5395DB;
     }
   }
 
@@ -136,10 +136,3 @@
     }
   }
 }
-
-.personalised_nav {
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-}
-
