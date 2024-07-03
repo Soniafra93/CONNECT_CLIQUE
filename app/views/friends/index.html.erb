@@ -6,7 +6,7 @@
 
     <div class="col-12">
       <div class="card shadow-sm mb-4">
-        <div class="card-header" style="background-color: #00123F; color: white;">
+        <div class="card-header">
           My Friends
         </div>
         <ul class="list-group list-group-flush">
@@ -22,10 +22,10 @@
                       <%= image_tag "default-avatar.avif", class: 'avatar-image friends-avatar', title: user.full_name %>
                     <% end %>
                   </div>
-                  <%= user.try(:full_name) %>
+                  <%= content_tag :span, user.try(:full_name), class: "user-name" %> <!-- Apply user-name class -->
                 </div>
                 <% if policy(friend).destroy? %>
-                  <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove" do %>
+                  <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove", class: "remove-btn" do %>
                     <%= image_tag 'remove.png', alt: 'Remove', style: 'width: 20px; height: 20px;' %>
                   <% end %>
                 <% end %>
@@ -39,16 +39,16 @@
     <div class="col-12">
       <div class="card shadow-sm">
         <div class="card-body">
-          <h2 class="card-title text-center mb-4" style="color: #00123F;">Add Friend</h2>
+          <h2 class="card-title text-center mb-4">Add Friend</h2>
           <%= form_with model: Friend.new, url: friends_create_path, local: true do |form| %>
 
             <% if policy(Friend.new).create? %>
               <div class="form-group mb-3">
-                <%= form.label :attendee_id, "Full Name", class: "form-label", style: "color: #292929;" %>
-                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, class: "form-select", style: "color: #292929;", input_html: {data: {controller: "tom-select"}} %>
+                <%= form.label :attendee_id, "Full Name", class: "form-label" %>
+                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, { class: "form-select", data: { controller: "tom-select" } } %>
               </div>
               <div class="d-grid">
-                <%= form.submit "Add Friend", class: "btn btn-primary", style: "background-color: #00123F; border-color: #00123F;" %>
+                <%= form.submit "Add Friend", class: "btn btn-primary" %>
               </div>
             <% else %>
               <p class="text-center text-muted">You are not authorized to add friends.</p>

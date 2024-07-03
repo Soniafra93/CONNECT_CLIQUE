@@ -58,13 +58,13 @@
     <% end %>
 
     <!-- Edit and Vote links -->
-    <div class="btn-container">
+    <div class="btn-container d-flex justify-content-center"> <!-- Add flex container here -->
       <% if !@activity.voting_closed %>
         <% if !current_user.votes.exists?(activity: @activity) %>
-          <button data-action="click->toggle-form#fire" class="btn2 vote-button">Vote</button>
+          <button data-action="click->toggle-form#fire" class="vote-btn vote-button">Vote</button>
         <% end %>
         <% if current_user == @activity.user %>
-          <%= button_to 'Close Vote', close_voting_activity_path(@activity), method: :post, class: 'btn2' %>
+          <%= button_to 'Close Vote', close_voting_activity_path(@activity), method: :post, class: 'close-vote-btn' %>
         <% end %>
       <% end %>
     </div>
@@ -90,7 +90,7 @@
         <%= @activity.date_3.strftime("%A, %d %b at %H:%M") %>
       <% end %>
     </div>
-    <%= f.submit 'Submit Vote', class: 'btn1 mt-2', data: { vote_target: 'voteButton' } %>
+    <%= f.submit 'Submit Vote', class: 'sub-vote-btn mt-2', data: { vote_target: 'voteButton' } %>
   <% end %>
   <div id="message-display" class="mt-3" data-vote-target="messageDisplay"></div>
 </div>
