@@ -41,16 +41,16 @@
     <!-- Number of votes -->
     <p class="show-activity-detail">
       <strong>Votes:</strong>
-      <span class="votes-count text-success"><%= @activity.votes.count %></span>
+      <span class="votes-count display_votes_date_color"><%= @activity.votes.count %></span>
     </p>
 
     <% if @activity.voting_closed %>
       <p class="show-activity-detail">
         <strong>Winning Date:</strong>
-        <span class="text-success"><%= @activity.winning_date %> ✅</span>
+        <span class="display_votes_date_color"><%= @activity.winning_date %></span>
       </p>
       <% if @activity.start_time.present? && @activity.end_time.present? %>
-        <p class="show-activity-detail">
+        <p class="show-activity-detail display_final_vote_date_color">
           <strong>Your Activity On:</strong>
           <%= @activity.start_time.strftime("%A, %d %b at %H:%M") %> - <%= @activity.end_time.strftime("%H:%M") %>
         </p>
