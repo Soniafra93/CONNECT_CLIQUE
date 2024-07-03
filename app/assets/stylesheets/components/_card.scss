@@ -1,3 +1,4 @@
+/* Container for the entire home page */
 .home-container {
   display: flex;
   flex-direction: column;
@@ -6,97 +7,130 @@
   margin: 0 auto;
   padding: 20px;
 }
+
+/* Container for the calendar */
 .calendar-container {
   width: 100%;
   margin-bottom: 30px;
 }
 
+/* Container for all event cards */
 .cards-container {
   width: 80%;
   margin: 0 auto;
   padding-bottom: 60px;
 }
 
+/* Grid layout for event cards */
 .cards-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 20px; /* Space between cards */
 }
 
+/* Individual event card */
 .custom-event-card {
   width: 100%;
-  height: 110px;
+  height: 150px;
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 4px #00123F;
+  border-radius: 12px 12px 0 0; /* Rounded top corners */
+  box-shadow: 0 4px 4px #00123f;
   overflow: hidden;
   display: flex;
   transition: all 0.3s ease;
+  position: relative;
 }
 
-.custom-event-card:hover .custom-event-card__title {
-  color: #00123F;
+/* Date circle */
+.custom-event-card__date-circle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: #26355d;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #ffdb00;
+  font-weight: normal;
+  z-index: 1;
+  padding-top: 14px;
 }
 
-.custom-event-card:hover .custom-event-card__description {
-  color: #83899E;
+/* Date circle content wrapper */
+.custom-event-card__date-circle .date-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Month text in date circle */
+.custom-event-card__date-circle .month {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+/* Day text in date circle */
+.custom-event-card__date-circle .day {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* Content area of the card */
 .custom-event-card__content {
   flex: 1;
   min-width: 0;
-  padding: 10px;
+  padding: 20px 20px 20px 90px; /* Extra padding on left for date circle */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
+/* Event title */
 .custom-event-card__title {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 4px;
-  color: #00123F;
+  color: #26355d; /* Updated color as requested */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* Event description */
 .custom-event-card__description {
-  font-size: 0.75rem; /* Adjust font size */
-  color: #83899E;
+  font-size: 0.85rem;
+  color: #5a6070; /* Darker grey for the description */
   margin-bottom: 8px;
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
-.custom-event-card__datetime {
-  font-size: 0.7rem; /* Adjust font size */
-  color: #5395DB;
-  display: flex;
-  align-items: center;
-}
-
-.custom-event-card__datetime i {
-  margin-right: 4px;
-}
-
+/* Container for the event image */
 .custom-event-card__image-container {
-  flex: 0 0 30%;
-  max-width: 30%;
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
   overflow: hidden;
   position: relative;
 }
 
+/* Event image */
 .custom-event-card__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Maintains image proportions */
 }
 
+/* Placeholder for when no image is available */
 .custom-event-card__placeholder {
   width: 100%;
   height: 100%;
@@ -106,44 +140,56 @@
   justify-content: center;
 }
 
+/* Text for image placeholder */
 .custom-event-card__placeholder::after {
   content: "No Image";
   color: #888;
   font-size: 1rem;
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 576px) {
   .home-container {
     padding: 10px;
   }
 
   .cards-container {
-    padding-bottom: 40px; /* Less padding on smaller screens */
+    padding-bottom: 40px;
   }
 
   .custom-event-card {
-    height: 90px; /* Adjust height for smaller screens */
+    height: 130px;
   }
 
   .custom-event-card__content {
-    padding: 8px;
+    padding: 15px 15px 15px 80px;
   }
 
-  .custom-event-card__title {
-    font-size: 0.8rem;
+  .custom-event-card__date-circle {
+    width: 50px;
+    height: 50px;
+    padding-top: 11px;
   }
 
-  .custom-event-card__description {
-    font-size: 0.7rem;
-    -webkit-line-clamp: 2;
-  }
-
-  .custom-event-card__datetime {
+  .custom-event-card__date-circle .month {
     font-size: 0.6rem;
   }
 
+  .custom-event-card__date-circle .day {
+    font-size: 0.9rem;
+  }
+
+  .custom-event-card__title {
+    font-size: 0.9rem;
+  }
+
+  .custom-event-card__description {
+    font-size: 0.75rem;
+    -webkit-line-clamp: 2;
+  }
+
   .custom-event-card__image-container {
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
   }
 }

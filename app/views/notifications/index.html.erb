@@ -8,8 +8,11 @@
           <%= notification.message %>
             <span class="badge bg-danger">New</span>
             <%= link_to 'Mark as read', mark_as_read_notification_path(notification), data:{ turbo_method: :patch}, class: 'teal_button float-end' %>
-           </li>
-           <% end %>
+            <% if notification.friend_request? %>
+              <%= link_to 'Add friend back', new_friend_path(attendee_id: notification.sender_id), data: {turbo_method: :post} %>
+            <% end %>
+         </li>
+        <% end %>
       <% end %>
     </ul>
   <% else %>

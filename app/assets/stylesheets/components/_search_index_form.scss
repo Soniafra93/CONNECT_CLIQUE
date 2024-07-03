@@ -6,10 +6,10 @@
 }
 
 .search-form input[type="text"] {
-  padding: 10px 10px;
+  padding: 10px 15px; /* Adjust padding for better aesthetics */
   width: calc(100% - 30px);
-  border: 1px solid #DDDDDD;
-  border-radius: 6px;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Increase border-radius for a rounded look */
   font-size: 14px;
 }
 
@@ -21,7 +21,6 @@
   transform: translate(-50%, -50%);
   padding: 10px 15px;
   border-radius: 4px;
-  background-color: #5395DB;
+  background-color: #FFDB00;
   color: #FFFFFF;
 }
-

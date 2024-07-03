@@ -1,16 +1,24 @@
 <!-- app/views/shared/_navbar.html.erb -->
 <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
   <div class="container d-flex justify-content-between align-items-center">
-    <% if user_signed_in? && current_page?(my_profile_path) %>
+    <% if user_signed_in? %>
       <div class="d-flex align-items-center">
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
-        <% else %>
-          <%= image_tag "default-avatar.avif", alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
-        <% end %>
-        <span class="personalised_nav ms-2">
-          Hi <span style="font-size: 1.5em;">👋</span> <strong><%= current_user.full_name %></strong>
-        </span>
+        <div class="dropdown">
+          <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
+            <% else %>
+              <%= image_tag "default-avatar.avif", alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
+            <% end %>
+            <span class="ms-2 app-name">
+              Hi 👋 <%= current_user.first_name %>
+            </span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm">
+            <li><%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+          </ul>
+        </div>
+
       </div>
     <% else %>
       <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>

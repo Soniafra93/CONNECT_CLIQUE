@@ -4,6 +4,6 @@
     <%= link_to image_tag(current_page?(new_activity_path) ? "add1.png" : "add2.png", alt: "Add"), new_activity_path %>
     <%= link_to image_tag(current_page?(friends_path) ? "friends1.png" : "friends2.png", alt: "friends"), friends_path %>
     <%= link_to image_tag(current_page?(activities_path) ? "search1.png" : "search2.png", alt: "Search"), activities_path %>
-    <%= link_to image_tag(@unread_notifications ? "notification1.png" : "notification2.png", alt: "Notifications"), notifications_path %>
+    <%= link_to image_tag(current_page?(notifications_path) ? "notification1.png" : "notification2.png", alt: "Notifications"), notifications_path %>
   </div>
 </div>
