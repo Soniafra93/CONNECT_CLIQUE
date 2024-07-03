@@ -1,7 +1,11 @@
 <div class="container mt-4" data-controller="toggle-form">
   <div class="show-activity-card">
     <div class="d-flex justify-content-between align-items-center">
-      <h2 class="show-activity-title"><%= @activity.name %></h2>
+      <% if @activity.user.photo.attached? %>
+        <%= cl_image_tag @activity.user.photo.key, alt: "Avatar", width: "35", height: "35", class: "rounded-circle me-2" %>
+      <% end %>
+      <h2 class="show-activity-title flex-grow-1"><%= @activity.name.capitalize %></h2>
+
       <div class="dropdown">
         <img src="<%= asset_path('three_dots.png') %>" alt="Options" class="three-dots-icon" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
@@ -122,3 +126,4 @@
       </div>
     </div>
   <% end %>
+</div>
