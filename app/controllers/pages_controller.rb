@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_calendar_events, only: [:home]
+  before_action :set_calendar_events, only: [:home, :myprofile]
 
   def home
     @activities = policy_scope(Activity)
@@ -16,6 +16,15 @@ class PagesController < ApplicationController
                     .where(attendances: { user_id: current_user.id })
                     .where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
                     .distinct
+  end
+
+
+  def myprofile
+    @activities = policy_scope(Activity)
+                    .joins(:attendances)
+                    .where(attendances: { user_id: current_user.id }, voting_closed: true)
+                    .distinct
+    @sorted_events = @activities.group_by(&:winning_date)
   end
 
   private

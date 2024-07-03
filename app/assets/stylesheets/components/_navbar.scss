@@ -9,6 +9,9 @@
     .app-name {
       font-size: 1.5rem;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
 
       .connect {
         font-family: "YourPrimaryFont", sans-serif;
@@ -28,7 +31,14 @@
     transition: color 0.2s;
   }
 
+  .dropdown {
+    position: relative; /* Ensure dropdown menu is positioned relative to its parent */
+  }
+
   .dropdown-menu {
+    position: absolute; /* Position the dropdown menu absolutely */
+    top: 100%; /* Position it right below the dropdown toggle */
+    left: 0; /* Align it to the left edge of the dropdown toggle */
     background-color: #ffffff;
     border: 1px solid #00123f;
     border-radius: 0.25rem;
@@ -63,4 +73,73 @@
       border-color: #5395db;
     }
   }
+
+  .rounded-circle {
+    border: 2px solid #ffffff;
+  }
+
+  .app-name {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+
+    .connect, .clique {
+      margin: 0;
+      padding: 0;
+    }
+
+    .connect {
+      color: #007bff;
+    }
+
+    .clique {
+      color: #28a745;
+    }
+  }
+
+  .dropdown-toggle::after {
+    display: none; /* Remove the default dropdown arrow */
+  }
+
+  .dropdown-menu {
+    min-width: 100px; /* Adjust dropdown menu width if needed */
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+
+    .app-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+
+      .connect {
+        font-family: 'YourPrimaryFont', sans-serif;
+        color: #007bff;
+      }
+
+      .clique {
+        font-family: 'YourItalicFont', sans-serif;
+        font-style: italic;
+        color: #28a745;
+      }
+    }
+  }
 }
+
+.personalised_nav {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
