@@ -1,40 +1,66 @@
-.btn1 {
-  background-color: #00123F;
+// create activity button
+.act-btn {
+  background-color: #FF8F00;
+  border-color: #ffffff;
   color: #ffffff;
   border: none;
-  padding: 10px 10px;
-  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 100em;
   cursor: pointer;
-  margin-bottom: 0 !important; /* Override any bottom margin */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  text-align: center;
 }
 
 .btn1:hover {
-  background-color: #5395DB;
+  background-color: hsl(34, 84%, 68%);
 }
 
-.btn2 {
-  background-color: #00123F;
+// vote - close vote buttons
+.vote-btn, .close-vote-btn {
+  background-color: #FF8F00;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 100em;
+  cursor: pointer;
+  margin: 0 5px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 150px; /* Set a fixed width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.vote-btn:hover {
+  background-color: hsl(34, 84%, 68%);
+}
+
+.close-vote-btn:hover {
+  background-color: hsl(34, 84%, 68%);
+}
+
+// submit vote button
+.sub-vote-btn {
+  background-color: #FF8F00;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 100em;
   cursor: pointer;
   flex: 1;
   margin: 0 5px;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
-  height: 40px; /* Adjust as needed */
+  height: 40px;
 }
 
-.btn2:hover {
-  background-color: #5395DB;
-}
-
-.btn2:focus,
-.btn2:active {
-  outline: none;
-  box-shadow: none;
+.sub-vote-btn:hover {
+  background-color: hsl(34, 84%, 68%);
 }
 
 @media (max-width: 600px) {
