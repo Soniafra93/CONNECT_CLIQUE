@@ -94,7 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_172440) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "sender_id"
-    t.boolean "friend_request",
+    t.boolean "friend_request"
     t.index ["sender_id"], name: "index_notifications_on_sender_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
