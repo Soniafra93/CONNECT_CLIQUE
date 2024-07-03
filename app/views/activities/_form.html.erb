@@ -1,17 +1,17 @@
 <%= simple_form_for(activity, html: { class: 'activity-form' }) do |form| %>
   <div class="field">
-    <%= form.input :name, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
+    <%= form.input :name, label_html: { class: 'form-label' }, input_html: { class: 'form-control styled-input' } %>
   </div>
 
   <div class="field">
-    <%= form.input :description, as: :text, label_html: { class: 'form-label' }, input_html: { class: 'form-control' } %>
+    <%= form.input :description, as: :text, label_html: { class: 'form-label' }, input_html: { class: 'form-control styled-input' } %>
   </div>
 
   <div class="field">
     <%= form.input :address,
       input_html: {
         data: { address_autocomplete_target: "address" },
-        class: "d-none"
+        class: "styled-input"
       },
       wrapper_html: {
         data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] }
@@ -22,37 +22,28 @@
 
   <div class="field">
     <%= form.label :date_1, class: 'form-label' %>
-    <%= form.text_field :date_1, as: :string, data: { controller: "datepicker" }, class: 'form-control' %>
+    <%= form.text_field :date_1, as: :string, data: { controller: "datepicker" }, class: 'form-control styled-input' %>
   </div>
 
   <div class="field">
     <%= form.label :date_2, class: 'form-label' %>
-    <%= form.text_field :date_2, as: :string, data: { controller: "datepicker" }, class: 'form-control' %>
+    <%= form.text_field :date_2, as: :string, data: { controller: "datepicker" }, class: 'form-control styled-input' %>
   </div>
 
   <div class="field">
     <%= form.label :date_3, class: 'form-label' %>
-    <%= form.text_field :date_3, as: :string, data: { controller: "datepicker" }, class: 'form-control' %>
+    <%= form.text_field :date_3, as: :string, data: { controller: "datepicker" }, class: 'form-control styled-input' %>
   </div>
-
-  <%# <div class="field">
-    <label for="members" class="form-label">Members</label>
-    <select id="members" class="form-control" data-action="change->members#toggleFriendSelection">
-      <option value="public">Public</option>
-      <option value="friends">Friends</option>
-    </select>
-  </div> %>
 
   <div class="field">
-    <%= form.input :members, collection:["public", "friends"], class: 'form-control', data: { action: "change->members#toggleFriendSelection" } %>
+    <%= form.input :members, collection: ["public", "friends"], input_html: { class: 'form-control styled-input' }, data: { action: "change->members#toggleFriendSelection" } %>
   </div>
-
 
   <div class="field d-none" id="friends_list">
     <label class="form-label">Friends</label>
     <% current_user.friends.each do |friend| %>
       <div class="form-check">
-        <%= check_box_tag 'activity[friend_ids][]', friend.attendee_id, false, class: 'form-check-input' %>
+        <%= check_box_tag 'activity[friend_ids][]', friend.attendee_id, false, class: 'form-check-input styled-input' %>
         <%= label_tag "activity_friend_ids_#{friend.attendee_id}", friend.attendee.full_name, class: 'form-check-label' %>
       </div>
     <% end %>
@@ -60,10 +51,10 @@
 
   <div class="field">
     <%= form.label :photos, class: 'form-label' %>
-    <%= form.file_field :photos, multiple: true, class: 'form-control' %>
+    <%= form.file_field :photos, multiple: true, class: 'form-control styled-input' %>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Create Activity', class: 'btn1' %>
+    <%= form.submit 'Create Activity', class: 'act-btn' %>
   </div>
 <% end %>

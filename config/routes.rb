@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'notifications/index'
-  get 'notifications/mark_as_read'
+  #get 'notifications/mark_as_read'
+  get 'myprofile', to: 'pages#myprofile', as: 'my_profile'
 
 
   resources :activities do

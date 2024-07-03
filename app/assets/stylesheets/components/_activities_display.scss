@@ -4,110 +4,135 @@
   margin: 0 auto;
   padding: 20px;
 }
+<<<<<<< card
 
 /* Flash messages */
 .flash {
   padding: 10px;
+=======
+.show-activity-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px #FFFFFF;
+  padding: 20px;
+>>>>>>> master
   margin-bottom: 20px;
   border-radius: 5px;
 }
+<<<<<<< card
 
 /* Carousel adjustments */
+=======
+.show-activity-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #00123f;
+}
+.show-activity-detail {
+  font-size: 1rem;
+  color: #83899E;
+  margin-bottom: 8px;
+}
+.show-activity-detail strong {
+  color: #333333;
+}
+>>>>>>> master
 .carousel-container {
   margin-bottom: 20px;
 }
-
 .carousel-item img {
   border-radius: 12px;
   object-fit: cover;
 }
+<<<<<<< card
 
 /* Map container */
+=======
+.modern-photo {
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 8px #DDDDDD;
+}
+>>>>>>> master
 .map-container {
   margin-top: 20px;
   margin-bottom: 20px;
   height: 300px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 6px #ffffff;
+  box-shadow: 0 4px 6px #FFFFFF;
 }
+<<<<<<< card
 
 /* Attendees container */
+=======
+>>>>>>> master
 .attendees-container {
   margin-top: 20px;
   padding-bottom: 150px;
 }
-
 .avatars {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
-
 .avatar {
   text-align: center;
 }
-
 .avatar-image {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ffffff;
+  border: 2px solid #FFFFFF;
 }
-
 .avatar-name {
   font-size: 0.9rem;
   margin-top: 5px;
   color: #666666;
 }
+<<<<<<< card
 
 /* Buttons container */
+=======
+>>>>>>> master
 .btn-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
-
 .vote-button {
   margin: 0 auto;
 }
-
 .three-dots-icon {
   width: 24px;
   height: 24px;
   cursor: pointer;
 }
-
 @media (max-width: 767px) {
   .show-activity-card {
     padding: 15px;
   }
-
   .show-activity-title {
     font-size: 1.2rem;
   }
-
   .show-activity-detail {
     font-size: 0.9rem;
   }
-
   .btn1 {
     width: 100%;
     text-align: center;
   }
 }
-
 .votes-count {
   font-weight: bold;
   font-size: 1.1em;
 }
-
 .display_votes_date_color {
-  color: #ff8f00;
+  color: #FF8F00;
 }
-
 .display_final_vote_date_color {
-  color: #26355d;
+  color: #26355D;
 }
