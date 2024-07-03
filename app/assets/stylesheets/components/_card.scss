@@ -8,12 +8,6 @@
   padding: 20px;
 }
 
-/* Container for the calendar */
-.calendar-container {
-  width: 100%;
-  margin-bottom: 30px;
-}
-
 /* Container for all event cards */
 .cards-container {
   width: 80%;
@@ -30,21 +24,37 @@
 
 /* Individual event card */
 .custom-event-card {
-  width: 100%;
-  height: 150px;
   background-color: #ffffff;
-  border-radius: 12px 12px 0 0; /* Rounded top corners */
+  border-radius: 12px 12px 0 0; /* Rounded top corners, right-angled bottom corners */
   box-shadow: 0 4px 4px #00123f;
   overflow: hidden;
   display: flex;
+  flex-direction: column; /* Ensure flex direction is column */
   transition: all 0.3s ease;
   position: relative;
+  margin-bottom: 20px; /* Space between cards */
+}
+
+/* Container for the event image */
+.custom-event-card__image-container {
+  width: 100%; /* Make image container take full width */
+  height: 150px; /* Set a fixed height for the image */
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px 12px 0 0; /* Rounded top corners */
+}
+
+/* Event image */
+.custom-event-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintains image proportions */
 }
 
 /* Date circle */
 .custom-event-card__date-circle {
   position: absolute;
-  top: 10px;
+  bottom: 10px; /* Move the circle to the bottom left */
   left: 10px;
   width: 60px;
   height: 60px;
@@ -52,12 +62,11 @@
   border-radius: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center; /* Center align content vertically */
   align-items: center;
   color: #ffdb00;
   font-weight: normal;
-  z-index: 1;
-  padding-top: 14px;
+  padding-top: 45px;
 }
 
 /* Date circle content wrapper */
@@ -83,12 +92,11 @@
 
 /* Content area of the card */
 .custom-event-card__content {
-  flex: 1;
-  min-width: 0;
-  padding: 20px 20px 20px 90px; /* Extra padding on left for date circle */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 20px;
+  padding-left: 80px; /* Add left padding to accommodate the date circle */
 }
 
 /* Event title */
@@ -113,21 +121,6 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-}
-
-/* Container for the event image */
-.custom-event-card__image-container {
-  flex: 0 0 33.333%;
-  max-width: 33.333%;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Event image */
-.custom-event-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Maintains image proportions */
 }
 
 /* Placeholder for when no image is available */
@@ -158,17 +151,17 @@
   }
 
   .custom-event-card {
-    height: 130px;
+    height: auto;
   }
 
   .custom-event-card__content {
-    padding: 15px 15px 15px 80px;
+    padding: 10px;
+    padding-left: 85px; /* Adjust padding for mobile view */
   }
 
   .custom-event-card__date-circle {
     width: 50px;
     height: 50px;
-    padding-top: 11px;
   }
 
   .custom-event-card__date-circle .month {
@@ -189,7 +182,6 @@
   }
 
   .custom-event-card__image-container {
-    flex: 0 0 33.333%;
-    max-width: 33.333%;
+    height: 130px;
   }
 }
