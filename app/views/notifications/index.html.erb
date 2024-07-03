@@ -1,14 +1,21 @@
 <h1>Notifications</h1>
 <ul>
-  <% @notifications.each do |notification| %>
-    <li>
-      <%= notification.message %>
-      <% unless notification.read? %>
-        <%= link_to 'Mark as read', mark_as_read_notification_path(notification), method: :patch %>
-        <% if notification.friend_request? %>
-          <%= link_to 'Add friend back', new_friend_path(attendee_id: notification.sender_id), data: {turbo_method: :post} %>
+  <% if @notifications.any? %>
+    <ul class="list-group">
+      <% @notifications.each do |notification| %>
+       <% if !notification.read? %>
+        <li class="list-group-item" id="notification-<%= notification.id %>">
+          <%= notification.message %>
+            <span class="badge bg-danger">New</span>
+            <%= link_to 'Mark as read', mark_as_read_notification_path(notification), data:{ turbo_method: :patch}, class: 'teal_button float-end' %>
+            <% if notification.friend_request? %>
+              <%= link_to 'Add friend back', new_friend_path(attendee_id: notification.sender_id), data: {turbo_method: :post} %>
+            <% end %>
+         </li>
         <% end %>
       <% end %>
-    </li>
+    </ul>
+  <% else %>
+    <p>No notifications found.</p>
   <% end %>
 </ul>
