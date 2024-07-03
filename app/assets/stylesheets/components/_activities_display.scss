@@ -1,36 +1,20 @@
+/* Container for the activities page */
 .activities-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.show-activity-card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px #ffffff;
-  padding: 20px;
+/* Flash messages */
+.flash {
+  padding: 10px;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
-.show-activity-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 30px;
-  color: #00123f;
-}
-
-.show-activity-detail {
-  font-size: 1rem;
-  color: #83899e;
-  margin-bottom: 8px;
-}
-
-.show-activity-detail strong {
-  color: #333333;
-}
-
+/* Carousel adjustments */
 .carousel-container {
-  margin-bottom: 20px; /* Reduced margin-bottom back to default */
+  margin-bottom: 20px;
 }
 
 .carousel-item img {
@@ -38,20 +22,17 @@
   object-fit: cover;
 }
 
-.modern-photo {
-  border: 2px solid #ffffff;
-  box-shadow: 0 4px 8px #dddddd;
-}
-
+/* Map container */
 .map-container {
   margin-top: 20px;
-  margin-bottom: 20px; /* Add margin-bottom to create space between the map and the footer */
-  height: 300px; /* Set a fixed height */
+  margin-bottom: 20px;
+  height: 300px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 6px #ffffff;
 }
 
+/* Attendees container */
 .attendees-container {
   margin-top: 20px;
   padding-bottom: 150px;
@@ -81,19 +62,20 @@
   color: #666666;
 }
 
+/* Buttons container */
 .btn-container {
   display: flex;
-  justify-content: center; /* Center align content */
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Allow wrapping for responsive design */
+  flex-wrap: wrap;
 }
 
 .vote-button {
-  margin: 0 auto; /* Center the vote button */
+  margin: 0 auto;
 }
 
 .three-dots-icon {
-  width: 24px; /* Adjust the size as needed */
+  width: 24px;
   height: 24px;
   cursor: pointer;
 }

@@ -1,4 +1,11 @@
 <div class="custom-event-card">
+  <div class="custom-event-card__image-container">
+    <% if activity.respond_to?(:photos) && activity.photos.attached? %>
+      <%= cl_image_tag activity.photos.first.key, class: "custom-event-card__image", alt: activity.name %>
+    <% else %>
+      <div class="custom-event-card__placeholder"></div>
+    <% end %>
+  </div>
   <div class="custom-event-card__date-circle">
     <div class="date-content">
       <div class="month"><%= activity.date_1&.strftime("%b") %></div>
@@ -8,12 +15,5 @@
   <div class="custom-event-card__content">
     <h3 class="custom-event-card__title"><%= activity.name %></h3>
     <p class="custom-event-card__description"><%= truncate(activity.description, length: 100) %></p>
-  </div>
-  <div class="custom-event-card__image-container">
-    <% if activity.respond_to?(:photos) && activity.photos.attached? %>
-      <%= cl_image_tag activity.photos.first.key, class: "custom-event-card__image", alt: activity.name %>
-    <% else %>
-      <div class="custom-event-card__placeholder"></div>
-    <% end %>
   </div>
 </div>
