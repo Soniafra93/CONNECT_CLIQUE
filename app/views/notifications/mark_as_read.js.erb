@@ -1,0 +1,5 @@
+<% if @notification.read? %>
+  $("#notification-<%= @notification.id %>").remove();
+<% else %>
+  alert('Failed to mark notification as read.');
+<% end %>
