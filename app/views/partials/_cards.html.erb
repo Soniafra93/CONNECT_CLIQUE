@@ -7,10 +7,24 @@
     <% end %>
   </div>
   <div class="custom-event-card__date-circle">
-    <div class="date-content">
-      <div class="month"><%= activity.date_1&.strftime("%b") %></div>
-      <div class="day"><%= activity.date_1&.strftime("%d") %></div>
-    </div>
+    <% if activity.voting_closed? %>
+      <% if activity.winning_date %>
+        <div class="date-content">
+          <div class="month"><%= activity.winning_date.strftime("%b") %></div>
+          <div class="day"><%= activity.winning_date.strftime("%d") %></div>
+        </div>
+      <% else %>
+        <div class="no-winning-date">No date selected</div>
+      <% end %>
+    <% else %>
+      <div class="vote-image-container">
+        <% if activity.user_has_voted?(current_user) %>
+          <%= image_tag "voted.png", class: "vote-image" %>
+        <% else %>
+          <%= image_tag "vote.png", class: "vote-image" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="custom-event-card__content">
     <h3 class="custom-event-card__title"><%= activity.name %></h3>
