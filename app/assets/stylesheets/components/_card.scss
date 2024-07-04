@@ -51,10 +51,9 @@
   object-fit: cover; /* Maintains image proportions */
 }
 
-/* Date circle */
 .custom-event-card__date-circle {
   position: absolute;
-  bottom: 10px; /* Move the circle to the bottom left */
+  bottom: 10px;
   left: 10px;
   width: 60px;
   height: 60px;
@@ -62,11 +61,49 @@
   border-radius: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center align content vertically */
+  justify-content: center;
   align-items: center;
   color: #ffdb00;
   font-weight: normal;
-  padding-top: 45px;
+  overflow: hidden;
+}
+
+/* Styles for the date content */
+.date-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 15px;
+}
+
+/* Styles for the vote image */
+.vote-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vote-image {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+/* Styles for month and day */
+.month,
+.day {
+  text-align: center;
+}
+
+/* Styles for when there's no winning date */
+.no-winning-date {
+  font-size: 10px;
+  text-align: center;
 }
 
 /* Date circle content wrapper */

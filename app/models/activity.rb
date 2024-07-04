@@ -29,6 +29,15 @@ class Activity < ApplicationRecord
     end
   end
 
+  def winning_date
+    return nil unless voting_closed?
+    most_voted_date
+  end
+
+  def user_has_voted?(user)
+    votes.exists?(user: user)
+  end
+
   def most_voted_date
     dates = [date_1, date_2, date_3]
     tally = dates.map do |date|
