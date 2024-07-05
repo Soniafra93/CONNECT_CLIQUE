@@ -1,61 +1,54 @@
 <div class="container my-4">
-  <div class="row">
-    <div class="col-12 mb-4">
-      <h1 class="text-center">Friends List</h1>
-    </div>
-
-    <div class="col-12">
-      <div class="card shadow-sm mb-4">
-        <div class="card-header">
-          My Friends
-        </div>
-        <ul class="list-group list-group-flush">
-          <% @friends.each do |friend| %>
-            <% if policy(friend).show? %>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                  <% user = friend.user == current_user ? friend.attendee : friend.user %>
-                  <div class="friends-avatar me-2">
-                    <% if user.photo.attached? %>
-                      <%= cl_image_tag user.photo.key, class: 'avatar-image friends-avatar', title: user.full_name %>
-                    <% else %>
-                      <%= image_tag "default-avatar.avif", class: 'avatar-image friends-avatar', title: user.full_name %>
-                    <% end %>
-                  </div>
-                  <%= content_tag :span, user.try(:full_name), class: "user-name" %> <!-- Apply user-name class -->
-                </div>
-                <% if policy(friend).destroy? %>
-                  <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove", class: "remove-btn" do %>
-                    <%= image_tag 'remove.png', alt: 'Remove', style: 'width: 20px; height: 20px;' %>
-                  <% end %>
-                <% end %>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-12">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h2 class="card-title text-center mb-4">Add Friend</h2>
-          <%= form_with model: Friend.new, url: friends_create_path, local: true do |form| %>
-
-            <% if policy(Friend.new).create? %>
-              <div class="form-group mb-3">
-                <%= form.label :attendee_id, "Full Name", class: "form-label" %>
-                <%= form.collection_select :attendee_id, @users, :id, :full_name, { prompt: "Select a friend" }, { class: "form-select", data: { controller: "tom-select" } } %>
-              </div>
-              <div class="d-grid">
-                <%= form.submit "Add Friend", class: "btn btn-primary" %>
-              </div>
-            <% else %>
-              <p class="text-center text-muted">You are not authorized to add friends.</p>
-            <% end %>
+  <div class="add-friend-section">
+    <%= form_with model: Friend.new, url: friends_create_path, local: true do |form| %>
+      <div class="d-flex align-items-center">
+        <div class="form-group flex-grow-1 me-2">
+          <% if policy(Friend.new).create? %>
+            <%= form.collection_select :attendee_id, @users, :id, :full_name,
+                { prompt: "Add a new friend to your list below" },
+                { class: "form-select", data: { controller: "tom-select" } } %>
+          <% else %>
+            <p class="text-muted mb-0">You are not authorized to add friends.</p>
           <% end %>
         </div>
+        <% if policy(Friend.new).create? %>
+          <%= form.submit "Add Friend", class: "btn btn-primary d-none", id: "submit-friend" %>
+          <%= image_tag 'add1.png', alt: 'Add Friend', class: 'add-icon',
+              onclick: 'document.getElementById("submit-friend").click()',
+              style: 'cursor: pointer; width: 24px; height: 24px;' %>
+        <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
+
+  <div class="messages-header">
+    <h1>My Friends List</h1>
+  </div>
+
+  <div class="friends-list">
+  <% @friends.each do |friend| %>
+    <% if policy(friend).show? %>
+      <% user = friend.user == current_user ? friend.attendee : friend.user %>
+      <div class="friend-item">
+        <div class="user-avatar">
+          <% if user.photo.attached? %>
+            <%= cl_image_tag user.photo.key, class: 'avatar-image', title: user.full_name %>
+          <% else %>
+            <%= image_tag "default-avatar.avif", class: 'avatar-image', title: user.full_name %>
+          <% end %>
+        </div>
+        <div class="content-wrapper">
+          <div class="friend-content">
+            <%= content_tag :span, user.try(:full_name), class: "user-name", style: "color: #26355D; font-style: italic;" %>
+          </div>
+          <% if policy(friend).destroy? %>
+            <%= link_to friend_path(friend), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, title: "Remove", class: "remove-btn" do %>
+              <%= image_tag 'remove.png', alt: 'Remove', class: 'remove-icon' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 </div>
