@@ -78,4 +78,3 @@ class FriendsController < ApplicationController
     @users = User.where.not(id: current_user.id).where.not(id: friend_ids)
   end
 end
-
