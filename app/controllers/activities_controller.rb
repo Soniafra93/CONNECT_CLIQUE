@@ -47,7 +47,9 @@ class ActivitiesController < ApplicationController
           Notification.create!(
             user_id: friend.attendee.id,
             message: "You've been invited to vote for #{@activity.name}!",
-            read: false
+            read: false,
+            notification_type: "activity",
+            type_id: @activity.id
           )
         end
       end

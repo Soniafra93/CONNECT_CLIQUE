@@ -17,9 +17,9 @@ class FriendsController < ApplicationController
         current_user.friends.each do |friend|
           Notification.create!(
             user_id: friend.attendee.id,
-            sender_id: friend.user.id,
-            friend_request: true,
-            message: "You've been added as a friend by #{current_user.first_name.capitalize}!",
+            type_id: friend.user.id,
+            notification_type: "friend",
+            message: "You added as a friend by #{current_user.first_name.capitalize}!",
             read: false
           )
         end
@@ -44,8 +44,8 @@ class FriendsController < ApplicationController
         current_user.friends.each do |friend|
           Notification.create!(
             user_id: friend.attendee.id,
-            sender_id: friend.user.id,
-            friend_request: true,
+            type_id: friend.user.id,
+            notification_type: "friends",
             message: "You've been added as a friend by #{current_user.first_name}!",
             read: false
           )

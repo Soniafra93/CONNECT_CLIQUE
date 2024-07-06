@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_01_172440) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_125642) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,9 +93,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_172440) do
     t.boolean "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "sender_id"
-    t.boolean "friend_request"
-    t.index ["sender_id"], name: "index_notifications_on_sender_id"
+    t.string "notification_type"
+    t.string "type_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -132,7 +131,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_172440) do
   add_foreign_key "friends", "users"
   add_foreign_key "friends", "users", column: "attendee_id"
   add_foreign_key "notifications", "users"
-  add_foreign_key "notifications", "users", column: "sender_id"
   add_foreign_key "votes", "activities"
   add_foreign_key "votes", "users"
 end

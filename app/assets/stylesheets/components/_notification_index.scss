@@ -10,7 +10,7 @@
 .avatar {
   position: absolute;
   left: -15px;
-  top: 18px;
+  top: 8px;
   padding-right: 20px;
 }
 
@@ -34,7 +34,7 @@
   text-decoration: none;
   color: rgb(175, 71, 210);
   background-color: white;
-  padding: 10px;
+  padding: 6px;
   border-radius: 15px;
   border: 0.5px solid rgb(175, 71, 210);
   transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
@@ -43,4 +43,8 @@
 .add-friend:hover {
   color: white;
   background-color: rgb(175, 71, 210);
+}
+
+.text {
+  font-size: 15px;
 }

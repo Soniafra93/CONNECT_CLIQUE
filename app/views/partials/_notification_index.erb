@@ -1,7 +1,7 @@
 <div class="item" id="notification-<%= notification.id %>">
   <div class="avatar">
     <% if notification.friend_request? %>
-      <% sender = User.find(notification.sender_id) %>
+      <% sender = User.find(notification.type_id) %>
       <% if sender.photo.attached? %>
         <%= cl_image_tag sender.photo.key, alt: "Avatar", width: "40", height: "40", class: "rounded-circle me-2" %>
       <% else %>
@@ -10,7 +10,7 @@
     <% end %>
   </div>
   <div>
-    <div class="text d-flex">
+    <div class="text d-flex justify-content-between">
       <%= notification.message %>
       <%= link_to mark_as_read_notification_path(notification), data: { turbo_method: :patch }, class: 'teal_button ms-2' do %>
         <i class="fa-solid fa-check-double"></i>
@@ -19,7 +19,9 @@
     <div class="float-end">
       <span class="badge">New</span>
       <% if notification.friend_request? %>
-        <%= link_to 'Add friend back', new_friend_path(attendee_id: notification.sender_id), data: { turbo_method: :post }, class: 'add-friend ms-2' %>
+        <%= link_to 'Add friend back', new_friend_path(attendee_id: notification.type_id), data: { turbo_method: :post }, class: 'add-friend ms-2' %>
+      <% else %>
+        <%= link_to 'See activity', activity_path(notification.type_id), class: 'add-friend ms-2' %>
       <% end %>
     </div>
   </div>
