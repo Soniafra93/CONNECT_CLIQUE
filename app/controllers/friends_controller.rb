@@ -19,7 +19,7 @@ class FriendsController < ApplicationController
             user_id: friend.attendee.id,
             sender_id: friend.user.id,
             friend_request: true,
-            message: "You've been added as a friend by #{current_user.first_name}!",
+            message: "You've been added as a friend by #{current_user.first_name.capitalize}!",
             read: false
           )
         end
@@ -78,4 +78,3 @@ class FriendsController < ApplicationController
     @users = User.where.not(id: current_user.id).where.not(id: friend_ids)
   end
 end
-
