@@ -1,21 +1,13 @@
-<h1>Notifications</h1>
-<ul>
+<div class="container">
+  <h2 class="text-center my-4" id="title">Notifications</h2>
   <% if @notifications.any? %>
-    <ul class="list-group">
-      <% @notifications.each do |notification| %>
-       <% if !notification.read? %>
-        <li class="list-group-item" id="notification-<%= notification.id %>">
-          <%= notification.message %>
-            <span class="badge bg-danger">New</span>
-            <%= link_to 'Mark as read', mark_as_read_notification_path(notification), data:{ turbo_method: :patch}, class: 'teal_button float-end' %>
-            <% if notification.friend_request? %>
-              <%= link_to 'Add friend back', new_friend_path(attendee_id: notification.sender_id), data: {turbo_method: :post} %>
-            <% end %>
-         </li>
-        <% end %>
+    <% @notifications.each do |notification| %>
+    <% if !notification.read? %>
+      <%= render 'partials/notification_index', notification: notification %>
       <% end %>
-    </ul>
+    <% end %>
   <% else %>
     <p>No notifications found.</p>
   <% end %>
-</ul>
+
+</div>

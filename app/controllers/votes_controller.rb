@@ -25,7 +25,9 @@ class VotesController < ApplicationController
           Notification.create(
             user_id: @activity.user_id,
             message: "#{current_user.first_name} has voted for #{@activity.name}.",
-            read: false
+            read: false,
+            notification_type: "activity",
+            type_id: @activity.id,
           )
           redirect_to @activity, notice: 'Your vote was successfully submitted.'
         end
