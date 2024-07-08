@@ -5,43 +5,44 @@
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px; /* Increased top and bottom padding */
+  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
 }
 
 /* Container for all event cards */
 .cards-container {
   width: 80%;
   margin: 0 auto;
-  padding-bottom: 60px;
+  padding-bottom: 100px;
 }
 
 /* Grid layout for event cards */
 .cards-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px; /* Space between cards */
+  gap: 40px; /* Space between cards */
 }
 
 /* Individual event card */
 .custom-event-card {
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Ensure flex direction is column */
+  flex-direction: column;
   transition: all 0.3s ease;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* Container for the event image */
 .custom-event-card__image-container {
-  width: 100%; /* Make image container take full width */
-  height: 200px; /* Set a fixed height for the image */
+  width: 100%;
+  height: 250px; /* Set a fixed height for the image */
   overflow: hidden;
   position: relative;
-  border-radius: 12px 12px 0 0; /* Rounded top corners */
+  border-radius: 8px;
 }
 
 /* Event image */
@@ -50,9 +51,35 @@
   height: 150%;
   object-fit: cover;
 }
+
+/* Content area of the card */
+.custom-event-card__content {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  padding-left: 85px;
+}
+
+/* Event title */
+.custom-event-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #26355D;
+  margin-bottom: 10px;
+}
+
+/* Event description */
+.custom-event-card__description {
+  font-size: 0.9rem;
+  color: #8E8E8E;
+  margin-bottom: 15px;
+  -webkit-line-clamp: 4; /* Allow for one more line of text */
+}
+
 // date circle
 .custom-event-card__date-circle {
   position: absolute;
+  margin-bottom: 20px;
   bottom: 10px;
   left: 10px;
   width: 60px;
@@ -127,37 +154,6 @@
   line-height: 1;
 }
 
-/* Content area of the card */
-.custom-event-card__content {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  padding-left: 80px; /* Add left padding to accommodate the date circle */
-}
-
-/* Event title */
-.custom-event-card__title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: #26355D;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Event description */
-.custom-event-card__description {
-  font-size: 0.9rem;
-  color: #8E8E8E;
-  margin-bottom: 8px;
-  line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
 /* Placeholder for when no image is available */
 .custom-event-card__placeholder {
   width: 100%;
@@ -178,11 +174,11 @@
 /* Mobile responsive adjustments */
 @media (max-width: 576px) {
   .home-container {
-    padding: 10px;
+    padding: 20px 10px;
   }
 
   .cards-container {
-    padding-bottom: 40px;
+    padding-bottom: 60px;
   }
 
   .custom-event-card {
@@ -190,8 +186,21 @@
   }
 
   .custom-event-card__content {
-    padding: 10px;
-    padding-left: 85px; /* Adjust padding for mobile view */
+    padding: 20px;
+    padding-left: 75px; /* Adjust padding for mobile view */
+  }
+
+  .custom-event-card__image-container {
+    height: 180px;
+  }
+
+  .custom-event-card__title {
+    font-size: 0.9rem;
+  }
+
+  .custom-event-card__description {
+    font-size: 0.75rem;
+    -webkit-line-clamp: 2;
   }
 
   .custom-event-card__date-circle {
@@ -205,18 +214,5 @@
 
   .custom-event-card__date-circle .day {
     font-size: 0.9rem;
-  }
-
-  .custom-event-card__title {
-    font-size: 0.9rem;
-  }
-
-  .custom-event-card__description {
-    font-size: 0.75rem;
-    -webkit-line-clamp: 2;
-  }
-
-  .custom-event-card__image-container {
-    height: 130px;
   }
 }
