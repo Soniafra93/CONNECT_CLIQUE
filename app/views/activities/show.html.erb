@@ -61,7 +61,7 @@
     <% end %>
 
     <!-- Edit and Vote links -->
-    <div class="btn-container d-flex justify-content-center"> <!-- Add flex container here -->
+    <div class="btn-container d-flex justify-content-around"> <!-- Add flex container here -->
       <% if !@activity.voting_closed %>
         <% if !current_user.votes.exists?(activity: @activity) %>
           <button data-action="click->toggle-form#fire" class="vote-btn vote-button">Vote</button>

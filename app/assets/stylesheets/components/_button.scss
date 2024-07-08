@@ -1,6 +1,6 @@
 // create activity button
 .act-btn {
-  background-color: #FF8F00;
+  background-color: #ff8f00;
   border-color: #ffffff;
   color: #ffffff;
   border: none;
@@ -17,14 +17,32 @@
 }
 
 // vote - close vote buttons
-.vote-btn, .close-vote-btn {
-  background-color: #FF8F00;
+.vote-btn {
+  background-color: #ff8f00;
   color: #ffffff;
   border: none;
-  padding: 10px 20px;
+  // padding: 10px 20px;
   border-radius: 100em;
   cursor: pointer;
-  margin: 0 5px;
+  margin: 0 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 150px; /* Set a fixed width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.close-vote-btn {
+  background-color: #ff8f00;
+  color: #ffffff;
+  border: none;
+  // padding: 10px 20px;
+  border-radius: 100em;
+  cursor: pointer;
+  margin: 0 20px;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -45,7 +63,7 @@
 
 // submit vote button
 .sub-vote-btn {
-  background-color: #FF8F00;
+  background-color: #ff8f00;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
