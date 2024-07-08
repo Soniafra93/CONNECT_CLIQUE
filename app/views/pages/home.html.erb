@@ -39,11 +39,13 @@
         <% @activities.first(4).each do |activity| %>
           <%= link_to activity_path(activity), class: "card-link" do %>
             <div class="card">
-              <% if activity.photos.attached? %>
-                <%= image_tag activity.photos.first, alt: activity.name, class: "card-img-top" %>
-              <% else %>
-                <%= image_tag "default_activity_image.jpg", alt: activity.name, class: "card-img-top" %>
-              <% end %>
+              <div class="custom-event-card__image-container">
+                <% if activity.photos.attached? %>
+                  <%= image_tag activity.photos.first, alt: activity.name, class: "custom-event-card__image" %>
+                <% else %>
+                  <div class="custom-event-card__placeholder"></div>
+                <% end %>
+              </div>
               <div class="custom-event-card__date-circle">
                 <div class="date-content">
                   <div class="month"><%= activity.start_time.strftime("%b") %></div>
