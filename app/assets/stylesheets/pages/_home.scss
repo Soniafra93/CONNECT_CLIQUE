@@ -1,4 +1,3 @@
-/* Existing styles for the homepage */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 * {
@@ -31,6 +30,23 @@ body {
   transform-origin: center;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+
+  // Adding animation class for zoom
+  &.zoom-in-out {
+    animation: zoomInOut 2s forwards;
+  }
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .guidance-header {
@@ -153,6 +169,7 @@ body {
   /* Add the date circle styles */
   .custom-event-card__date-circle {
     position: absolute;
+    margin-bottom: 1px !important;
     bottom: 10px;
     left: 10px;
     width: 60px;

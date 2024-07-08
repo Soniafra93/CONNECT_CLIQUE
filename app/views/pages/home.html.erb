@@ -64,16 +64,16 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       var userGuidance = document.querySelector('.user-guidance');
-      userGuidance.classList.add('zoom-in');
+      userGuidance.classList.add('zoom-in-out');
 
-      setTimeout(function() {
-        userGuidance.classList.remove('zoom-in');
-      }, 2000);
-    });
+      userGuidance.addEventListener('animationend', function() {
+        userGuidance.classList.remove('zoom-in-out');
+      });
 
-    document.getElementById('toggle-icon').addEventListener('click', function() {
-      var content = document.getElementById('guidance-content');
-      content.classList.toggle('visible');
+      document.getElementById('toggle-icon').addEventListener('click', function() {
+        var content = document.getElementById('guidance-content');
+        content.classList.toggle('visible');
+      });
     });
   </script>
 </body>
