@@ -36,7 +36,7 @@ activity1 = Activity.create!(
   date_2: Date.today + 3.days,
   date_3: Date.today + 5.days,
   user: user1,
-  # members: "friends",
+  members: "friends",
   photos: [
     File.open(image_path.join('morning_jogging.png')),
   ]
