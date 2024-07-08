@@ -109,20 +109,19 @@
        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
   <!-- Avatar display code -->
-  <% if @activity.voting_closed %>
-    <div class="attendees-container mt-4">
-      <h3 class="show-activity-title">Attendees</h3>
-      <div class="avatars d-flex flex-wrap">
-        <% @attendees.each do |attendance| %>
-          <div class="avatar attendees-avatar me-2 mb-2">
-            <% if attendance.user.photo.attached? %>
-              <%= cl_image_tag attendance.user.photo.key, class: 'avatar-image attendees-avatar', title: "#{attendance.user.first_name} #{attendance.user.last_name}" %>
-            <% else %>
-              <%= image_tag "default-avatar.avif", class: 'avatar-image attendees-avatar', title: "#{attendance.user.first_name} #{attendance.user.last_name}" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+<% if @activity.voting_closed %>
+  <div class="attendees-container mt-4">
+    <h3 class="show-activity-title">Attendees</h3>
+    <div class="avatars d-flex flex-wrap">
+      <% @attendees.each do |attendance| %>
+        <div class="attendee-avatar-wrapper me-2 mb-2">
+          <% if attendance.user.photo.attached? %>
+            <%= cl_image_tag attendance.user.photo.key, class: 'attendee-avatar', title: "#{attendance.user.first_name} #{attendance.user.last_name}" %>
+          <% else %>
+            <%= image_tag "default-avatar.avif", class: 'attendee-avatar', title: "#{attendance.user.first_name} #{attendance.user.last_name}" %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
