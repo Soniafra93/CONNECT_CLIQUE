@@ -1,17 +1,80 @@
-<div class="calendar-container">
-  <%= month_calendar(events: @activities, start_attribute: :start_time, end_attribute: :end_time) do |date, activities| %>
-    <%= date %>
-    <% activities.each do |activity| %>
-      <p><%= activity.name %> - <%= activity.start_time&.strftime("%H:%M") %> to <%= activity.end_time&.strftime("%H:%M") %></p>
-    <% end %>
-  <% end %>
-</div>
-<div class="cards-container">
-  <div class="cards-grid">
-    <% @activities.first(4).each do |activity| %>
-      <%= link_to activity_path(activity), class: "text-decoration-none" do %>
-        <%= render 'partials/cards', activity: activity %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Personalized Calendar</title>
+</head>
+<body>
+  <div class="container">
+
+    <div class="user-guidance animated">
+      <div class="guidance-header">
+        <h2>Welcome to Your Personalized Calendar!</h2>
+        <div class="icon-container">
+          <i id="toggle-icon" class="fas fa-info-circle animated-icon"></i>
+        </div>
+      </div>
+      <div id="guidance-content" class="guidance-content">
+        <p>Here's how it works:</p>
+        <ul>
+          <li><i class="fas fa-calendar-check"></i> Events you book will appear as dots on the calendar.</li>
+          <li><i class="fas fa-hand-pointer"></i> Click on a date to view the events scheduled for that day.</li>
+          <li><i class="fas fa-info-circle"></i> Below the calendar, you'll find information about your upcoming events.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="calendar-container">
+      <%= month_calendar(events: @activities, start_attribute: :start_time, end_attribute: :end_time) do |date, activities| %>
+        <%= date.day %>
+        <% activities.each do |activity| %>
+          <div class="event-dot"></div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+
+    <div class="cards-container">
+      <div class="cards-grid">
+        <% @activities.first(4).each do |activity| %>
+          <%= link_to activity_path(activity), class: "card-link" do %>
+            <div class="card">
+              <% if activity.photos.attached? %>
+                <%= image_tag activity.photos.first, alt: activity.name, class: "card-img-top" %>
+              <% else %>
+                <%= image_tag "default_activity_image.jpg", alt: activity.name, class: "card-img-top" %>
+              <% end %>
+              <div class="custom-event-card__date-circle">
+                <div class="date-content">
+                  <div class="month"><%= activity.start_time.strftime("%b") %></div>
+                  <div class="day"><%= activity.start_time.strftime("%d") %></div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= activity.name %></h5>
+                <p class="card-text"><%= activity.start_time.strftime("%B %d, %Y at %I:%M %p") %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var userGuidance = document.querySelector('.user-guidance');
+      userGuidance.classList.add('zoom-in');
+
+      setTimeout(function() {
+        userGuidance.classList.remove('zoom-in');
+      }, 2000);
+    });
+
+    document.getElementById('toggle-icon').addEventListener('click', function() {
+      var content = document.getElementById('guidance-content');
+      content.classList.toggle('visible');
+    });
+  </script>
+</body>
+</html>

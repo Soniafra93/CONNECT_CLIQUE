@@ -25,20 +25,20 @@
 /* Individual event card */
 .custom-event-card {
   background-color: #ffffff;
-  border-radius: 12px 12px 0 0; /* Rounded top corners, right-angled bottom corners */
-  box-shadow: 0 4px 4px #00123f;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column; /* Ensure flex direction is column */
   transition: all 0.3s ease;
   position: relative;
-  margin-bottom: 20px; /* Space between cards */
+  margin-bottom: 10px;
 }
 
 /* Container for the event image */
 .custom-event-card__image-container {
   width: 100%; /* Make image container take full width */
-  height: 150px; /* Set a fixed height for the image */
+  height: 200px; /* Set a fixed height for the image */
   overflow: hidden;
   position: relative;
   border-radius: 12px 12px 0 0; /* Rounded top corners */
@@ -47,10 +47,10 @@
 /* Event image */
 .custom-event-card__image {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Maintains image proportions */
+  height: 150%;
+  object-fit: cover;
 }
-
+// date circle
 .custom-event-card__date-circle {
   position: absolute;
   bottom: 10px;
@@ -131,26 +131,24 @@
 .custom-event-card__content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   padding: 20px;
   padding-left: 80px; /* Add left padding to accommodate the date circle */
 }
 
 /* Event title */
 .custom-event-card__title {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 4px;
-  color: #26355d; /* Updated color as requested */
-  white-space: nowrap;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #26355D;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 /* Event description */
 .custom-event-card__description {
-  font-size: 0.85rem;
-  color: #5a6070; /* Darker grey for the description */
+  font-size: 0.9rem;
+  color: #8E8E8E;
   margin-bottom: 8px;
   line-height: 1.4;
   overflow: hidden;
@@ -173,7 +171,7 @@
 /* Text for image placeholder */
 .custom-event-card__placeholder::after {
   content: "No Image";
-  color: #888;
+  color: #8E8E8E;
   font-size: 1rem;
 }
 

@@ -1,64 +1,193 @@
-/* Homepage*/
+/* Existing styles for the homepage */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Navbar styles */
-.navbar {
-  background-color: whitesmoke;
-}
-
-.navbar-brand img {
-  width: 40px;
-  height: 40px;
-}
-
-.app-name {
+body {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
-  color: black;
-  font-weight: bold;
-  text-align: center;
+  background-color: #FAFAFA;
+  color: #262626;
 }
 
-.dropdown-menu {
-  background-color: whitesmoke;
-}
-
-.navbar .dropdown-menu .dropdown-item {
-  color: black;
-}
-
-/* Container styles */
 .container {
-  padding: 0;
+  max-width: 935px;
+  margin: 0 auto;
+  padding: 10px;
 }
+
+// User guidance style
+
+.user-guidance {
+  background: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #FF7F3E, #FF8F00, #FFDB00);
+  border-radius: 8px;
+  color: white;
+  margin: 20px 0;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform-origin: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.guidance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.guidance-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+// User guidance icon
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container i {
+  font-size: 1.2em;
+}
+
+// User guidance text
+
+.guidance-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  margin-top: 10px;
+}
+
+.guidance-content.visible {
+  height: auto;
+}
+
+// Calendar style
 
 .calendar-container {
-  padding: 0;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   width: 100%;
+  padding: 0px;
 }
 
+.simple-calendar .day {
+  height: 100px;
+  padding: 5px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #FAFAFA;
+  }
+}
+
+.simple-calendar .today {
+  background-color: #FF8F00;
+  color: #262626;
+}
+
+.simple-calendar .has-events {
+  background-color: #FAFAFA;
+}
+
+// Activity cards style
+
 .cards-container {
-  padding: 0;
+  margin-top: 30px;
+  padding: 0px;
   width: 100%;
+  margin-bottom: 100px;
 }
 
 .cards-grid {
-  padding: 0;
-  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-.cards-grid .text-decoration-none {
-  padding: 16px;
-  margin: 8px;
-  border: none;
-  outline: none;
+.card {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 15px;
+    padding-left: 80px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #26355D;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: #8E8E8E;
+  }
+
+  /* Add the date circle styles */
+  .custom-event-card__date-circle {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #26355d;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffdb00;
+    font-weight: normal;
+    overflow: hidden;
+  }
+
+  .custom-event-card__date-circle .date-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .custom-event-card__date-circle .month {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .custom-event-card__date-circle .day {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
 }
 
-.cards-grid .text-decoration-none>* {
-  padding: 0;
-  margin: 0;
+/* Space between footer and activity cards */
+footer {
+  margin-top: 50px;
 }
