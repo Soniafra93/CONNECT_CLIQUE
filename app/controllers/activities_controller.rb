@@ -83,6 +83,12 @@ class ActivitiesController < ApplicationController
   def close_voting
     authorize @activity, :close_voting?
 
+    # Check if there's at least one vote
+    if @activity.votes.empty?
+      redirect_to @activity
+      return
+    end
+
     if @activity.update(voting_closed: true)
       winning_date = @activity.determine_winning_date
 
@@ -111,14 +117,10 @@ class ActivitiesController < ApplicationController
             read: false
           )
         end
-
-        redirect_to @activity, notice: 'Voting has been closed and the most voted date has been finalized.'
-      else
-        redirect_to @activity, alert: 'There was an error determining the winning date.'
       end
-    else
-      redirect_to @activity, alert: 'There was an error closing the voting.'
     end
+
+    redirect_to @activity
   end
 
   private
