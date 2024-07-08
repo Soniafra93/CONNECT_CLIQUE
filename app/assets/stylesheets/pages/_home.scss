@@ -204,6 +204,12 @@ body {
   }
 }
 
+/* Remove underline from card links */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Space between footer and activity cards */
 footer {
   margin-top: 50px;
