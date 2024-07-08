@@ -19,7 +19,7 @@ class FriendsController < ApplicationController
             user_id: friend.attendee.id,
             type_id: friend.user.id,
             notification_type: "friend",
-            message: "You added as a friend by #{current_user.first_name.capitalize}!",
+            message: "You were added as a friend by #{current_user.first_name.capitalize}!",
             read: false
           )
         end
