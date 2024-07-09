@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Personalized Calendar</title>
+  <style>
+    .guidance-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .guidance-item i {
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -17,11 +27,15 @@
       </div>
       <div id="guidance-content" class="guidance-content">
         <p>Here's how it works:</p>
-        <ul>
-          <li><i class="fas fa-calendar-check"></i> Events you book will appear as dots on the calendar.</li>
-          <li><i class="fas fa-hand-pointer"></i> Click on a date to view the events scheduled for that day.</li>
-          <li><i class="fas fa-info-circle"></i> Below the calendar, you'll find information about your upcoming events.</li>
-        </ul>
+        <div class="guidance-item">
+          <i class="fas fa-calendar-check"></i> Events you book will appear as dots on the calendar.
+        </div>
+        <div class="guidance-item">
+          <i class="fas fa-hand-pointer"></i> Click on a date to view the events scheduled for that day.
+        </div>
+        <div class="guidance-item">
+          <i class="fas fa-info-circle"></i> Below the calendar, you'll find information about your upcoming events.
+        </div>
       </div>
     </div>
 
@@ -39,13 +53,11 @@
         <% @activities.first(4).each do |activity| %>
           <%= link_to activity_path(activity), class: "card-link" do %>
             <div class="card">
-              <div class="custom-event-card__image-container">
-                <% if activity.photos.attached? %>
-                  <%= image_tag activity.photos.first, alt: activity.name, class: "custom-event-card__image" %>
-                <% else %>
-                  <div class="custom-event-card__placeholder"></div>
-                <% end %>
-              </div>
+              <% if activity.photos.attached? %>
+                <%= image_tag activity.photos.first, alt: activity.name, class: "card-img-top" %>
+              <% else %>
+                <%= image_tag "default_activity_image.jpg", alt: activity.name, class: "card-img-top" %>
+              <% end %>
               <div class="custom-event-card__date-circle">
                 <div class="date-content">
                   <div class="month"><%= activity.start_time.strftime("%b") %></div>
