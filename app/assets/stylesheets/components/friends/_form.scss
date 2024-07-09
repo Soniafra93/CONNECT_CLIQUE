@@ -77,10 +77,16 @@
   &:focus {
     border-color: #AF47D2;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem #AF47D2;
+    box-shadow: none;
   }
 }
 
 .form-select option {
   color: #6c757d; /* Gray color for the prompt text */
+}
+
+.add-icon {
+  margin-left: 10px;
+  display: flex;
+  align-items: center !important;
 }
