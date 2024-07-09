@@ -2,7 +2,7 @@
   <div class="container d-flex justify-content-between align-items-center">
     <% if user_signed_in? %>
       <div class="d-flex align-items-center">
-        <div class="dropdown">
+        <div class="dropdown" style="padding-left: 10px;">
           <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <% if current_user.photo.attached? %>
               <%= cl_image_tag current_user.photo.key, alt: "Avatar", width: "30", height: "30", class: "rounded-circle me-2" %>
