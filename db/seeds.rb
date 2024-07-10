@@ -172,10 +172,10 @@ Vote.create!(
 puts "Created User #{user5.first_name} with Activity '#{activity5.name}'"
 
 user_photos = [
-  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629323/portrait-young-businessman-with-mustache-glasses-3d-rendering_hlymou.jpg',
+  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720631496/avatar_5_sy6vmz.jpg',
   'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629596/avatar_2_eljjyc.jpg',
   'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629226/avatar_xeiqyo.jpg',
-  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629389/3d-illustration-cute-cartoon-girl-blue-jacket-glasses_bbxfcn.jpg',
+  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720595244/production/0hlwar3i39e7atuw9yywnw7n98ap.jpg',
   'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629953/avatar_3_qdlelx.jpg'
 ]
 
