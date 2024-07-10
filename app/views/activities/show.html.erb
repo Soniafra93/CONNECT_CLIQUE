@@ -2,7 +2,7 @@
   <div class="show-activity-card">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <% if @activity.user.photo.attached? %>
-        <%= cl_image_tag @activity.user.photo.key, alt: "Avatar", width: "35", height: "35", class: "rounded-circle me-2" %>
+        <%= cl_image_tag @activity.user.photo.key, alt: "Avatar", width: "35", height: "35", class: 'avatar-image' %>
       <% end %>
       <h2 class="show-activity-title flex-grow-1"><%= @activity.name.capitalize %></h2>
       <div class="dropdown">
