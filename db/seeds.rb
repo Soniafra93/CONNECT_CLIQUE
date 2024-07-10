@@ -170,3 +170,19 @@ Vote.create!(
 )
 
 puts "Created User #{user5.first_name} with Activity '#{activity5.name}'"
+
+user_photos = [
+  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629323/portrait-young-businessman-with-mustache-glasses-3d-rendering_hlymou.jpg',
+  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629596/avatar_2_eljjyc.jpg',
+  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629226/avatar_xeiqyo.jpg',
+  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629389/3d-illustration-cute-cartoon-girl-blue-jacket-glasses_bbxfcn.jpg',
+  'https://res.cloudinary.com/dy1ouqmzj/image/upload/v1720629953/avatar_3_qdlelx.jpg'
+]
+
+users = User.all
+
+users.each_with_index do |user, index|
+  file = URI.open(user_photos[index])
+    user.photo.attach(io: file, filename: "person-#{index + 1}.jpg")
+    user.save!
+end
