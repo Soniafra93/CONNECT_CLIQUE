@@ -7,6 +7,7 @@ class PagesController < ApplicationController
                     .where(attendances: { user_id: current_user.id }, voting_closed: true)
                     .distinct
     @sorted_events = @activities.group_by(&:winning_date)
+
   end
 
   def index
