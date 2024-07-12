@@ -1,3 +1,4 @@
+<%require "date"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +63,13 @@
               </div>
               <div class="custom-event-card__date-circle">
                 <div class="date-content">
-                  <div class="month"><%= activity.start_time.strftime("%b") %></div>
-                  <div class="day"><%= activity.start_time.strftime("%d") %></div>
+                  <div class="month"><%=activity.winning_date.strftime("%B")%></div>
+                  <div class="day"><%= activity.winning_date.strftime("%d")%></div>
                 </div>
               </div>
               <div class="card-body">
                 <h5 class="card-title"><%= activity.name %></h5>
-                <p class="card-text"><%= activity.start_time.strftime("%B %d, %Y at %I:%M %p") %></p>
+                <p class="card-text"><%= activity.winning_date.strftime("%A, %d %b")%> at <%= activity.start_time.strftime("%H:%M") %></p>
               </div>
             </div>
           <% end %>
